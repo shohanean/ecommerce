@@ -14,6 +14,7 @@ use App\Http\Controllers\{FrontendController, HomeController, SocialController, 
 |
 */
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 
 Auth::routes();
 

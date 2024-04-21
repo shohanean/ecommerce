@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="{{ asset('frontend_assets') }}/img/icon.png">
 
     <!-- Title -->
-    <title>Airi - Clean, Minimal eCommerce Bootstrap 5 Template</title>
+    <title>{{ env('APP_NAME') }} - {{ env('APP_DESCRIPTION') }}</title>
 
     <!-- ************************* CSS Files ************************* -->
 
@@ -458,8 +458,8 @@
                                             </ul>
                                         </li>
                                         <li class="mainmenu__item">
-                                            <a href="shop-instagram.html" class="mainmenu__link">
-                                                <span class="mm-text">New Look</span>
+                                            <a href="{{ route('contact.us') }}" class="mainmenu__link">
+                                                <span class="mm-text">Contact Us</span>
                                             </a>
                                         </li>
                                     </ul>
