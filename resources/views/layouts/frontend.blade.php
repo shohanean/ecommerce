@@ -53,9 +53,9 @@
     </div>
 
     <!-- Main Wrapper Start -->
-    <div class="wrapper enable-header-transparent">
+    <div class="wrapper @if(Request::is('/')) enable-header-transparent @endif">
         <!-- Header Area Start -->
-        <header class="header header-transparent header-fullwidth header-style-1">
+        <header class="header @if(Request::is('/')) header-transparent @endif header-fullwidth header-style-1">
             <div class="header-outer">
                 <div class="header-inner fixed-header">
                     <div class="container-fluid">
@@ -343,8 +343,8 @@
                                             </ul>
                                         </li>
                                         <li class="mainmenu__item">
-                                            <a href="shop-collections.html" class="mainmenu__link">
-                                                <span class="mm-text">Collections</span>
+                                            <a href="{{ route('index') }}" class="mainmenu__link">
+                                                <span class="mm-text">Home</span>
                                             </a>
                                         </li>
                                         <li class="mainmenu__item menu-item-has-children has-children">
@@ -1463,7 +1463,7 @@
         <!-- Modal End -->
 
         <!-- Newsletter Popup Start -->
-        <div class="ai-newsletter-popup" id="subscribe-popup">
+        {{-- <div class="ai-newsletter-popup" id="subscribe-popup">
             <div class="ai-newsletter-popup-modal">
                 <a class="custom-close popup-close">
                     <i class="dl-icon-close"></i>
@@ -1493,7 +1493,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Newsletter Popup End -->
 
     </div>
