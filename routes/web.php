@@ -1,8 +1,9 @@
 <?php
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Route,Auth};
+use Illuminate\Support\Facades\{Route, Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\{FrontendController, HomeController, SocialController, ProfileController, BackupController, RoleController, UserController};
+use App\Http\Controllers\{FrontendController, HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,7 @@ use App\Http\Controllers\{FrontendController, HomeController, SocialController, 
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 
@@ -41,6 +43,9 @@ Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');
 
 Route::middleware(['auth'])->group(function () {
+    //Category Routes
+    Route::resource('category', CategoryController::class);
+
     //Profile Routes
     Route::resource('profile', ProfileController::class);
 
@@ -53,4 +58,3 @@ Route::middleware(['auth'])->group(function () {
     //User Routes
     Route::resource('user', UserController::class);
 });
-

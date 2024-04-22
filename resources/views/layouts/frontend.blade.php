@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ asset('frontend_assets') }}/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('frontend_assets') }}/img/icon.png">
+    <link rel="shortcut icon" href="{{ env('PROJECT_FAVICON') }}" type="image/x-icon">
 
     <!-- Title -->
     <title>{{ env('APP_NAME') }} - {{ env('APP_DESCRIPTION') }}</title>
@@ -53,9 +52,10 @@
     </div>
 
     <!-- Main Wrapper Start -->
-    <div class="wrapper @if(Request::is('/')) enable-header-transparent @endif">
+    <div class="wrapper @if (Request::is('/')) enable-header-transparent @endif">
         <!-- Header Area Start -->
-        <header class="header @if(Request::is('/')) header-transparent @endif header-fullwidth header-style-1">
+        <header
+            class="header @if (Request::is('/')) header-transparent @endif header-fullwidth header-style-1">
             <div class="header-outer">
                 <div class="header-inner fixed-header">
                     <div class="container-fluid">
@@ -391,53 +391,16 @@
                                         </li>
                                         <li class="mainmenu__item menu-item-has-children has-children">
                                             <a href="blog.html" class="mainmenu__link">
-                                                <span class="mm-text">Blog</span>
+                                                <span class="mm-text">Category</span>
                                             </a>
                                             <ul class="sub-menu">
-                                                <li class="menu-item-has-children has-children">
-                                                    <a href="#">
-                                                        <span class="mm-text">Blog Grid</span>
-                                                    </a>
-                                                    <ul class="sub-menu">
-                                                        <li>
-                                                            <a href="blog-02-columns.html">
-                                                                <span class="mm-text">Blog 02 Columns</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-03-columns.html">
-                                                                <span class="mm-text">Blog 03 Columns</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children has-children">
-                                                    <a href="#">
-                                                        <span class="mm-text">Blog List</span>
-                                                    </a>
-                                                    <ul class="sub-menu">
-                                                        <li>
-                                                            <a href="blog.html">
-                                                                <span class="mm-text">Blog Sidebar</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-standard.html">
-                                                                <span class="mm-text">Blog Standard</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-no-sidebar.html">
-                                                                <span class="mm-text">Blog No Sidebar</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-masonary.html">
-                                                        <span class="mm-text">Blog Masonary</span>
-                                                    </a>
-                                                </li>
+                                                @foreach (categories() as $category)
+                                                    <li>
+                                                        <a href="blog-masonary.html">
+                                                            <span class="mm-text">{{ $category->name }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
                                                 <li class="menu-item-has-children has-children">
                                                     <a href="#">
                                                         <span class="mm-text">Blog Details</span>
@@ -473,7 +436,8 @@
                                         <img src="{{ asset('frontend_assets') }}/img/logo/logo.svg" alt="Logo" />
                                     </figure>
                                     <figure class="logo--transparency">
-                                        <img src="{{ asset('frontend_assets') }}/img/logo/logo-white.png" alt="Logo" />
+                                        <img src="{{ asset('frontend_assets') }}/img/logo/logo-white.png"
+                                            alt="Logo" />
                                     </figure>
                                 </a>
                                 <!-- Logo End Here -->
@@ -1023,7 +987,8 @@
                         <div class="col-lg-3 col-md-8 mb-md--30">
                             <div class="footer-widget">
                                 <div class="textwidget">
-                                    <img src="{{ asset('frontend_assets') }}/img/logo/logo-white.png" alt="Logo" class="mb--10">
+                                    <img src="{{ asset('frontend_assets') }}/img/logo/logo-white.png" alt="Logo"
+                                        class="mb--10">
                                     <p class="font-size-16 font-2 mb--20">Integer ut ligula quis lectus fringilla
                                         elementum porttitor sed est. Duis fringilla efficitur ligula sed lobortis.</p>
                                     <!-- Social Icons Start Here -->
@@ -1096,11 +1061,13 @@
                                 <ul class="contact-info">
                                     <li class="contact-info__item">
                                         <i class="fa fa-phone"></i>
-                                        <span><a href="tel:+012345 6788" class="contact-info__link">(+012) 345 6788</a></span>
+                                        <span><a href="tel:+012345 6788" class="contact-info__link">(+012) 345
+                                                6788</a></span>
                                     </li>
                                     <li class="contact-info__item">
                                         <i class="fa fa-envelope"></i>
-                                        <span><a href="mailto:demo@email.com" class="contact-info__link">demo@email.com</a></span>
+                                        <span><a href="mailto:demo@email.com"
+                                                class="contact-info__link">demo@email.com</a></span>
                                     </li>
                                     <li class="contact-info__item">
                                         <i class="fa fa-map-marker"></i>
@@ -1149,7 +1116,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <p class="copyright-text">&copy; AIRI 2021 MADE WITH <i class="fa fa-heart"></i> BY HASTHEMES</p>
+                            <p class="copyright-text">&copy; AIRI 2021 MADE WITH <i class="fa fa-heart"></i> BY
+                                HASTHEMES</p>
                         </div>
                     </div>
                 </div>
@@ -1245,7 +1213,8 @@
                     </div>
                     <div class="widget">
                         <div class="text-widget">
-                            <p class="copyright-text">&copy; AIRI 2021 MADE WITH <i class="fa fa-heart"></i> BY HASTHEMES</p>
+                            <p class="copyright-text">&copy; AIRI 2021 MADE WITH <i class="fa fa-heart"></i> BY
+                                HASTHEMES</p>
                         </div>
                     </div>
                 </div>
@@ -1266,10 +1235,12 @@
                                     <i class="dl-icon-close"></i>
                                 </a>
                                 <div class="mini-cart__product__image">
-                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-17-1-70x91.jpg" alt="products">
+                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-17-1-70x91.jpg"
+                                        alt="products">
                                 </div>
                                 <div class="mini-cart__product__content">
-                                    <a class="mini-cart__product__title" href="product-details.html">Chain print bermuda
+                                    <a class="mini-cart__product__title" href="product-details.html">Chain print
+                                        bermuda
                                         shorts </a>
                                     <span class="mini-cart__product__quantity">1 x $49.00</span>
                                 </div>
@@ -1279,7 +1250,8 @@
                                     <i class="dl-icon-close"></i>
                                 </a>
                                 <div class="mini-cart__product__image">
-                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-18-1-70x91.jpg" alt="products">
+                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-18-1-70x91.jpg"
+                                        alt="products">
                                 </div>
                                 <div class="mini-cart__product__content">
                                     <a class="mini-cart__product__title" href="product-details.html">Waxed-effect
@@ -1292,7 +1264,8 @@
                                     <i class="dl-icon-close"></i>
                                 </a>
                                 <div class="mini-cart__product__image">
-                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-19-1-70x91.jpg" alt="products">
+                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-19-1-70x91.jpg"
+                                        alt="products">
                                 </div>
                                 <div class="mini-cart__product__content">
                                     <a class="mini-cart__product__title" href="product-details.html">Waxed-effect
@@ -1305,7 +1278,8 @@
                                     <i class="dl-icon-close"></i>
                                 </a>
                                 <div class="mini-cart__product__image">
-                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-2-1-70x91.jpg" alt="products">
+                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-2-1-70x91.jpg"
+                                        alt="products">
                                 </div>
                                 <div class="mini-cart__product__content">
                                     <a class="mini-cart__product__title" href="product-details.html">Waxed-effect
@@ -1355,8 +1329,8 @@
                                     <div class="product-image">
                                         <div class="product-image--holder">
                                             <a href="product-details.html">
-                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-9-1.jpg" alt="Product Image"
-                                                    class="primary-image">
+                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-9-1.jpg"
+                                                    alt="Product Image" class="primary-image">
                                             </a>
                                         </div>
                                         <span class="product-badge sale">sale</span>
@@ -1364,8 +1338,8 @@
                                     <div class="product-image">
                                         <div class="product-image--holder">
                                             <a href="product-details.html">
-                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-10-1.jpg" alt="Product Image"
-                                                    class="primary-image">
+                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-10-1.jpg"
+                                                    alt="Product Image" class="primary-image">
                                             </a>
                                         </div>
                                         <span class="product-badge new">new</span>
@@ -1373,8 +1347,8 @@
                                     <div class="product-image">
                                         <div class="product-image--holder">
                                             <a href="product-details.html">
-                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-11-1.jpg" alt="Product Image"
-                                                    class="primary-image">
+                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-11-1.jpg"
+                                                    alt="Product Image" class="primary-image">
                                             </a>
                                         </div>
                                         <span class="product-badge hot">hot</span>
@@ -1394,15 +1368,16 @@
                                             <span class="money">$60.00</span>
                                         </span>
                                     </span>
-                                    <p class="product-short-description mb--25 mb-md--20">Donec accumsan auctor iaculis.
+                                    <p class="product-short-description mb--25 mb-md--20">Donec accumsan auctor
+                                        iaculis.
                                         Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus,
                                         ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in
                                         vehicula lacus scelerisque. Vestibulum ut sem laoreet, feugiat tellus at,
                                         hendrerit arcu.</p>
                                     <div class="product-action d-flex flex-row align-items-center mb--30 mb-md--20">
                                         <div class="quantity">
-                                            <input type="number" class="quantity-input" name="qty" id="quick-qty"
-                                                value="1" min="1">
+                                            <input type="number" class="quantity-input" name="qty"
+                                                id="quick-qty" value="1" min="1">
                                         </div>
                                         <button type="button" class="btn btn-style-1 btn-semi-large add-to-cart"
                                             onclick="window.location.href='cart.html'">
@@ -1412,9 +1387,11 @@
                                         <a href="compare.html"><i class="dl-icon-compare2"></i></a>
                                     </div>
                                     <div class="product-extra mb--30 mb-md--20">
-                                        <a href="#" class="font-size-12"><i class="fa fa-map-marker"></i>Find store near
+                                        <a href="#" class="font-size-12"><i class="fa fa-map-marker"></i>Find
+                                            store near
                                             you</a>
-                                        <a href="#" class="font-size-12"><i class="fa fa-exchange"></i>Delivery and
+                                        <a href="#" class="font-size-12"><i class="fa fa-exchange"></i>Delivery
+                                            and
                                             return</a>
                                     </div>
                                     <div
@@ -1422,8 +1399,8 @@
                                         <div class="product-meta">
                                             <span class="sku_wrapper font-size-12">SKU: <span class="sku">REF.
                                                     LA-887</span></span>
-                                            <span class="posted_in font-size-12">Categories: <a href="shop-sidebar.html"
-                                                    rel="tag">Fashions</a></span>
+                                            <span class="posted_in font-size-12">Categories: <a
+                                                    href="shop-sidebar.html" rel="tag">Fashions</a></span>
                                         </div>
                                         <div class="product-share-box">
                                             <span class="font-size-12">Share With</span>
@@ -1525,7 +1502,8 @@
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.actions.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.carousel.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.kenburn.min.js"></script>
-    <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.layeranimation.min.js">
+    </script>
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.migration.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.navigation.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/js/revoulation/extensions/revolution.extension.parallax.min.js"></script>

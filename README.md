@@ -12,26 +12,25 @@
 This is a starter project for Laravel with various packages included.
 Packages List is given below:
 
-- Avatar Generator [laravolt/avatar](https://github.com/laravolt/avatar).
-- Number to Words Converter [kwn/number-to-words](https://github.com/kwn/number-to-words).
-
+-   Avatar Generator [laravolt/avatar](https://github.com/laravolt/avatar).
+-   Number to Words Converter [kwn/number-to-words](https://github.com/kwn/number-to-words).
 
 ## Setup
 
-- **Clone the repository with command: git clone https_link_of_the_repository**
-- **Install [Composer](https://getcomposer.org/download/)**
-- **Run the command: composer update**
-- **Run cp .env.example .env in the terminal**
-- **Then run php artisan key:generate**
-- **Setup the database in .env file**
-- **Then run php artisan migrate**
-- **Then run php artisan db:seed**
-- **Finally serve the application with php artisan serve**
+-   **Clone the repository with command: git clone https_link_of_the_repository**
+-   **Install [Composer](https://getcomposer.org/download/)**
+-   **Run the command: `composer update`**
+-   **Run `cp .env.example .env` in the terminal**
+-   **Then run `php artisan key:generate`**
+-   **Setup the database in .env file**
+-   **Then run `php artisan migrate`**
+-   **Then run `php artisan db:seed`**
+-   **Finally serve the application with `php artisan serve`**
 
 ## Tools Used
 
-- **[Laravel Livewire](https://laravel-livewire.com/)**
-- **[Alpine.js](https://alpinejs.dev/)**
+-   **[Laravel Livewire](https://laravel-livewire.com/)**
+-   **[Alpine.js](https://alpinejs.dev/)**
 
 ## Contributing
 

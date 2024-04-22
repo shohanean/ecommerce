@@ -2,36 +2,41 @@
 
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Category;
 
-function profile_compleation($id){
+function profile_compleation($id)
+{
     $percentage = 10; // if anyone opens an account get 10 points
-    if(Profile::where('user_id', $id)->exists()){
+    if (Profile::where('user_id', $id)->exists()) {
         $profile = Profile::where('user_id', $id)->first();
-        if($profile->phone_number){
+        if ($profile->phone_number) {
             $percentage += 20;
         }
-        if($profile->country_id){
+        if ($profile->country_id) {
             $percentage += 5;
         }
-        if($profile->city_id){
+        if ($profile->city_id) {
             $percentage += 5;
         }
-        if($profile->address){
+        if ($profile->address) {
             $percentage += 10;
         }
-        if($profile->fb_link){
+        if ($profile->fb_link) {
             $percentage += 5;
         }
-        if($profile->ig_link){
+        if ($profile->ig_link) {
             $percentage += 5;
         }
-        if($profile->li_link){
+        if ($profile->li_link) {
             $percentage += 5;
         }
     }
-    if(User::find($id)->avatar){
+    if (User::find($id)->avatar) {
         $percentage += 35;
     }
     return $percentage;
 }
-?>
+function categories()
+{
+    return Category::all();
+}
