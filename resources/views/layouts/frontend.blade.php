@@ -76,7 +76,7 @@
                                             <ul class="sub-menu">
                                                 @foreach (categories() as $category)
                                                     <li>
-                                                        <a href="blog-masonary.html">
+                                                        <a href="{{ route('s.category', $category->slug) }}">
                                                             <span class="mm-text">{{ $category->name }}</span>
                                                         </a>
                                                     </li>
