@@ -31,13 +31,13 @@
                                 </div>
                                 <div class="banner-info">
                                     <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">New Season</p>
-                                    <h2 class="banner-title-2">The <strong>Interview</strong></h2>
+                                    <h2 class="banner-title-2">The Interview</h2>
                                 </div>
-                                <a class="banner-link banner-overlay" href="shop-sidebar.html">Shop Now</a>
+                                <a class="banner-link banner-overlay" href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="banner-box banner-type-3 banner-type-3-1 banner-hover-1">
                             <div class="banner-inner">
                                 <div class="banner-image">
@@ -106,7 +106,7 @@
                                 <a class="banner-link banner-overlay" href="shop-sidebar.html">Shop Now</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

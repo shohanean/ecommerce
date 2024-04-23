@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('backend.category.index', [
-            'categories' => Category::all()
+            'categories' => Category::latest()->paginate(5)
         ]);
     }
 
@@ -39,6 +39,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:categories,name',
+            'description' => 'nullable'
+        ]);
         Category::create($request->except('_token') + [
             'user_id' => auth()->id(),
             'slug' => Str::slug($request->name)
