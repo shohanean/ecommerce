@@ -75,29 +75,23 @@
                                             </a>
                                             <ul class="sub-menu">
                                                 @foreach (categories() as $category)
-                                                    <li>
+                                                    <li class="@if($category->subcategory->count()>0) menu-item-has-children has-children @endif">
                                                         <a href="{{ route('s.category', $category->slug) }}">
                                                             <span class="mm-text">{{ $category->name }}</span>
                                                         </a>
+                                                        @if ($category->subcategory->count()>0)
+                                                            <ul class="sub-menu">
+                                                                @foreach ($category->subcategory as $subcategory)
+                                                                    <li>
+                                                                        <a href="single-post.html">
+                                                                            <span class="mm-text">{{ $subcategory->name }}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
                                                     </li>
                                                 @endforeach
-                                                <li class="menu-item-has-children has-children">
-                                                    <a href="#">
-                                                        <span class="mm-text">Blog Details</span>
-                                                    </a>
-                                                    <ul class="sub-menu">
-                                                        <li>
-                                                            <a href="single-post.html">
-                                                                <span class="mm-text">Single Post</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="single-post-sidebar.html">
-                                                                <span class="mm-text">Single Post Sidebar</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li class="mainmenu__item">

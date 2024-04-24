@@ -10,4 +10,8 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    function subcategory(){
+        return $this->hasMany(Subcategory::class, 'category_id', 'id')->latest();
+    }
 }

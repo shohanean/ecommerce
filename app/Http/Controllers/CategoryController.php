@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -47,7 +48,20 @@ class CategoryController extends Controller
             'user_id' => auth()->id(),
             'slug' => Str::slug($request->name)
         ]);
-        return back();
+        return back()->with('success', 'Category Added Successfully!');
+    }
+
+    public function subcategory_store(Request $request, $category_id){
+        // This validation will not work because of same name, we have to custom
+        // $request->validate([
+        //     'name' => 'required|unique:subcategories,name'
+        // ]);
+        Subcategory::create($request->except('_token') + [
+            'user_id' => auth()->id(),
+            'category_id' => $category_id,
+            'slug' => Str::slug($request->name).$category_id
+        ]);
+        return back()->with('s_success', 'Subcategory Added Successfully!');
     }
 
     /**
@@ -69,7 +83,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('backend.category.edit', [
+            'category' => $category->with('subcategory')->find($category->id)
+        ]);
     }
 
     /**
@@ -81,7 +97,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:categories,name,'.$category->id,
+            'description' => 'nullable'
+        ]);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->slug = Str::slug($request->name);
+        $category->save();
+        return back()->with('success', 'Category Updated Successfully!');
     }
 
     /**

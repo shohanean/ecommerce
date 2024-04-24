@@ -48,6 +48,7 @@ Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFaceboo
 Route::middleware(['auth'])->group(function () {
     //Category Routes
     Route::resource('category', CategoryController::class);
+    Route::post('subcategory/{category_id}', [CategoryController::class, 'subcategory_store'])->name('subcategory.store');
 
     //Profile Routes
     Route::resource('profile', ProfileController::class);
