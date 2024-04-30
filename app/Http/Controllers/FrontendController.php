@@ -16,6 +16,10 @@ class FrontendController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         return view('frontend.s_category', compact('category'));
     }
+    function product_details($slug)
+    {
+        return $slug;
+    }
     function shop()
     {
         return view('frontend.shop');

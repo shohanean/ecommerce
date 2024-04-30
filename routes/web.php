@@ -18,6 +18,7 @@ use App\Http\Controllers\{FrontendController, HomeController, SocialController, 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('s_category/{slug}', [FrontendController::class, 's_category'])->name('s.category');
+Route::get('product-details/{slug}', [FrontendController::class, 'product_details'])->name('product.details');
 Route::get('collections', [FrontendController::class, 'collections'])->name('collections');
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 

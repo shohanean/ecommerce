@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->id();
+            $table->string('top_title')->nullable();
+            $table->string('lower_title')->nullable();
+            $table->string('strong_title')->nullable();
+            $table->string('thumbnail');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::dropIfExists('collections');
     }
 };
