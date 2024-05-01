@@ -87,6 +87,14 @@
                                 </a>
                             </div>
                             <div class="menu-item">
+                                <a class="menu-link @yield('collection.index')" href="{{ route('collection.index') }}">
+                                    <span class="menu-icon">
+                                        <i class="fab fa-buffer"></i>
+                                    </span>
+                                    <span class="menu-title">Collection</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
                                 <a class="menu-link @yield('category.index')" href="{{ route('category.index') }}">
                                     <span class="menu-icon">
                                         <i class="fa fa-list-alt"></i>

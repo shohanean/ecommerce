@@ -15,7 +15,9 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.collection.index', [
+            'collections' => Collection::latest()->paginate(5)
+        ]);
     }
 
     /**
@@ -36,7 +38,13 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'thumbnail' => 'required|image'
+        ]);
+        Collection::create($request->except(['_token', 'thumbnail']) + [
+            'thumbnail' => 'nainai'
+        ]);
+        return back();
     }
 
     /**

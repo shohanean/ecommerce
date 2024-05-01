@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Route, Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\{FrontendController, HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController};
+use App\Http\Controllers\{FrontendController, HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CollectionController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +48,8 @@ Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');
 
 Route::middleware(['auth'])->group(function () {
+    //Collection Routes
+    Route::resource('collection', CollectionController::class);
     //Category Routes
     Route::resource('category', CategoryController::class);
     Route::post('subcategory/{category_id}', [CategoryController::class, 'subcategory_store'])->name('subcategory.store');

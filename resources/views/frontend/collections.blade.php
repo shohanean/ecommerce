@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="banner-info">
                                     <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">New Season</p>
-                                    <h2 class="banner-title-2">The Interview</h2>
+                                    <h2 class="banner-title-2">The <strong>Interview</strong></h2>
                                 </div>
                                 <a class="banner-link banner-overlay" href="#">Shop Now</a>
                             </div>
