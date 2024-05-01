@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Collection;
 
 class FrontendController extends Controller
 {
@@ -26,7 +27,9 @@ class FrontendController extends Controller
     }
     function collections()
     {
-        return view('frontend.collections');
+        return view('frontend.collections', [
+            'collections' => Collection::latest()->get()
+        ]);
     }
     function contact_us()
     {

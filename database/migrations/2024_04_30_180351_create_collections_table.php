@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('top_title')->nullable();
             $table->string('lower_title')->nullable();
             $table->string('strong_title')->nullable();
-            $table->string('thumbnail');
+            $table->text('thumbnail');
             $table->timestamps();
             $table->softDeletes();
         });

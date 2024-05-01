@@ -52,7 +52,7 @@
                                                         <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $collection->top_title }}</a>
                                                         <span class="text-muted fw-bold text-muted d-block fs-7">{{ $collection->lower_title }}</span>
                                                         <strong>{{ $collection->strong_title }}</strong>
-                                                        <strong>{{ $collection->thumbnail }}</strong>
+                                                        <img src="{{ $collection->thumbnail }}" alt="not found" width="100">
                                                     </div>
                                                 </div>
                                             </td>

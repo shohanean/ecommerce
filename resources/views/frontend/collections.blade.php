@@ -6,11 +6,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="page-title">Shop Collections</h1>
+                    <h1 class="page-title">Collections ({{ $collections->count() }})</h1>
                     <ul class="breadcrumb justify-content-center">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop-sidebar.html">Shop Pages</a></li>
-                        <li class="current"><span>Shop Collections</span></li>
+                        <li><a href="{{ route('index') }}">Home</a></li>
+                        <li class="current"><span>Collections</span></li>
                     </ul>
                 </div>
             </div>
@@ -23,20 +22,29 @@
         <div class="shop-page-wrapper">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <div class="banner-box banner-type-3 banner-type-3-1 banner-hover-1">
-                            <div class="banner-inner">
-                                <div class="banner-image">
-                                    <img src="{{ asset('frontend_assets') }}/img/banner/m07-banner1.jpg" alt="Banner">
+                    @forelse ($collections as $collection)
+                        <div class="col-md-4">
+                            <div class="banner-box banner-type-3 banner-type-3-1 banner-hover-1">
+                                <div class="banner-inner">
+                                    <div class="banner-image">
+                                        <img src="{{ $collection->thumbnail }}" alt="not found">
+                                    </div>
+                                    <div class="banner-info">
+                                        <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">{{ $collection->top_title }}</p>
+                                        <h2 class="banner-title-2">{{ $collection->lower_title }} <strong>{{ $collection->strong_title }}</strong></h2>
+                                    </div>
+                                    <a class="banner-link banner-overlay" href="#">Shop Now</a>
                                 </div>
-                                <div class="banner-info">
-                                    <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">New Season</p>
-                                    <h2 class="banner-title-2">The <strong>Interview</strong></h2>
-                                </div>
-                                <a class="banner-link banner-overlay" href="#">Shop Now</a>
                             </div>
                         </div>
+                    @empty
+                    <div class="col-md-8 m-auto">
+                        <div class="alert alert-danger mt-3">
+                            No collection is available now
+                        </div>
                     </div>
+                    @endforelse
+
                     {{-- <div class="col-md-4">
                         <div class="banner-box banner-type-3 banner-type-3-1 banner-hover-1">
                             <div class="banner-inner">

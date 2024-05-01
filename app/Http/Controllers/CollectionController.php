@@ -41,8 +41,9 @@ class CollectionController extends Controller
         $request->validate([
             'thumbnail' => 'required|image'
         ]);
+        $upload = $request->thumbnail->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME').'/collections');
         Collection::create($request->except(['_token', 'thumbnail']) + [
-            'thumbnail' => 'nainai'
+            'thumbnail' => $upload->getSecurePath()
         ]);
         return back();
     }
