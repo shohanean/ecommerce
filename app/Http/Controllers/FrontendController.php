@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Product;
 
 class FrontendController extends Controller
 {
@@ -19,11 +20,13 @@ class FrontendController extends Controller
     }
     function product_details($slug)
     {
-        return $slug;
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('frontend.product_details', compact('product'));
     }
     function shop()
     {
-        return view('frontend.shop');
+        $products = Product::all();
+        return view('frontend.shop', compact('products'));
     }
     function collections()
     {

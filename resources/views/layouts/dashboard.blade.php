@@ -102,6 +102,14 @@
                                     <span class="menu-title">Category & Subcategory</span>
                                 </a>
                             </div>
+                            <div class="menu-item">
+                                <a class="menu-link @yield('product.index')" href="{{ route('product.index') }}">
+                                    <span class="menu-icon">
+                                        <i class="fas fa-dolly"></i>
+                                    </span>
+                                    <span class="menu-title">Product</span>
+                                </a>
+                            </div>
                             @canany(['can add user', 'can see user list', 'can role user', 'can see role list'])
                                 <div data-kt-menu-trigger="click" class="menu-item @yield('user_management') menu-accordion mb-1">
                                     <span class="menu-link">
