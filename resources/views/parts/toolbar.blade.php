@@ -134,9 +134,11 @@
                 <!--end::Filter menu-->
                 <!--begin::Secondary button-->
                 <!--end::Secondary button-->
-                <!--begin::Primary button-->
-                <a href="../../demo1/dist/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Create</a>
-                <!--end::Primary button-->
+                @isset($right_btn)
+                    <!--begin::Primary button-->
+                    <a href="{{ route($right_btn[1]) }}" class="btn btn-sm btn-primary">{{ $right_btn[0] }}</a>
+                    <!--end::Primary button-->
+                @endisset
             </div>
             <!--end::Actions-->
         </div>
