@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -26,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.create');
+        return view('backend.product.create', [
+            'collections' => Collection::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -37,7 +43,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        Product::create($request->except('_token') + [
+            'slug' => Str::slug($request->name)
+        ]);
+        return back();
     }
 
     /**

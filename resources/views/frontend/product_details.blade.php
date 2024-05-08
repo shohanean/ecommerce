@@ -158,10 +158,7 @@
                                 </span>
                             </div>
                             <div class="clearfix"></div>
-                            <p class="product-short-description mb--45 mb-sm--20">Donec accumsan auctor iaculis. Sed
-                                suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget,
-                                sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque.
-                                Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                            <p class="product-short-description mb--45 mb-sm--20">{{ $product->short_description }}</p>
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
@@ -257,10 +254,12 @@
                             </div>
                             <div class="product-summary-footer d-flex justify-content-between flex-sm-row flex-column">
                                 <div class="product-meta">
-                                    <span class="sku_wrapper font-size-12">SKU: <span class="sku">REF.
-                                            LA-887</span></span>
-                                    <span class="posted_in font-size-12">Categories:
-                                        <a href="shop-sidebar.html">Fashions</a>
+                                    <span class="sku_wrapper font-size-12">SKU: <span
+                                            class="sku">{{ $product->sku }}</span></span>
+                                    <span class="posted_in font-size-12">Category:
+                                        <a href="{{ route('s.category', $product->category->slug) }}" target="_blank">
+                                            {{ $product->category->name }}
+                                        </a>
                                     </span>
                                     <span class="posted_in font-size-12">Tags:
                                         <a href="shop-sidebar.html">dress,</a>
@@ -319,28 +318,9 @@
                                 <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                                     aria-labelledby="nav-description-tab">
                                     <div class="product-description">
-                                        <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                                            molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam
-                                            egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut
-                                            sem laoreet, feugiat tellus at, hendrerit arcu.
-
-                                        <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
-                                            tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
-                                            mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
-                                            risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus elit.
+                                        <p>
+                                            {!! $product->long_description !!}
                                         </p>
-
-                                        <ul>
-                                            <li>Maecenas eu ante a elit tempus fermentum. Aliquam commodo tincidunt semper
-                                            </li>
-                                            <li>Aliquam est et tempus. Eaecenas libero ante, tincidunt vel</li>
-                                        </ul>
-
-                                        <p>Curabitur sodales euismod nibh. Sed iaculis sed orci eget semper. Nam auctor,
-                                            augue et eleifend tincidunt, felis mauris convallis neque, in placerat metus
-                                            urna laoreet diam. Morbi sagittis facilisis arcu sed ornare. Maecenas dictum
-                                            urna ut facilisis rhoncus.iaculis sed orci eget semper. Nam auctor, augue et
-                                            eleifend tincidunt, felis mauris</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-reviews" role="tabpanel"

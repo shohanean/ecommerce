@@ -273,16 +273,16 @@
         },
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "2.13.1",
+            "version": "2.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudinary/cloudinary_php.git",
-                "reference": "e4b958265ae7871151fd97441a5ed3c48ce61e90"
+                "reference": "5967558bbf5d88e851ebd554559e850ac45b9236"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/e4b958265ae7871151fd97441a5ed3c48ce61e90",
-                "reference": "e4b958265ae7871151fd97441a5ed3c48ce61e90",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/5967558bbf5d88e851ebd554559e850ac45b9236",
+                "reference": "5967558bbf5d88e851ebd554559e850ac45b9236",
                 "shasum": ""
             },
             "require": {
@@ -333,9 +333,9 @@
             "support": {
                 "email": "info@cloudinary.com",
                 "issues": "https://github.com/cloudinary/cloudinary_php/issues",
-                "source": "https://github.com/cloudinary/cloudinary_php/tree/2.13.1"
+                "source": "https://github.com/cloudinary/cloudinary_php/tree/2.14.0"
             },
-            "time": "2024-03-21T11:56:00+00:00"
+            "time": "2024-05-07T15:14:12+00:00"
         },
         {
             "name": "cloudinary/transformation-builder-sdk",
@@ -2391,16 +2391,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v5.13.2",
+            "version": "v5.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "278d4615f68205722b3a129135774b3764b28a90"
+                "reference": "c7b0193a3753a29aff8ce80aa2f511917e6ed68a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/278d4615f68205722b3a129135774b3764b28a90",
-                "reference": "278d4615f68205722b3a129135774b3764b28a90",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/c7b0193a3753a29aff8ce80aa2f511917e6ed68a",
+                "reference": "c7b0193a3753a29aff8ce80aa2f511917e6ed68a",
                 "shasum": ""
             },
             "require": {
@@ -2459,7 +2459,7 @@
                 "issues": "https://github.com/laravel/socialite/issues",
                 "source": "https://github.com/laravel/socialite"
             },
-            "time": "2024-04-26T13:48:16+00:00"
+            "time": "2024-05-03T20:31:38+00:00"
         },
         {
             "name": "laravel/tinker",

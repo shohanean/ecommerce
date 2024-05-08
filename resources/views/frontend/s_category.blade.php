@@ -16,6 +16,7 @@
         </div>
     </div>
     <!-- Breadcrumb area End -->
+    {{ $products }}
 
     <!-- Main Content Wrapper Start -->
     <div id="content" class="main-content-wrapper">
@@ -137,32 +138,27 @@
                                                 <h3 class="widget-title">Color</h3>
                                                 <ul class="product-widget__list product-color-swatch">
                                                     <li>
-                                                        <a href="shop-sidebar.html"
-                                                            class="product-color-swatch-btn blue">
+                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn blue">
                                                             <span class="product-color-swatch-label">Blue</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="shop-sidebar.html"
-                                                            class="product-color-swatch-btn green">
+                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn green">
                                                             <span class="product-color-swatch-label">Green</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="shop-sidebar.html"
-                                                            class="product-color-swatch-btn pink">
+                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn pink">
                                                             <span class="product-color-swatch-label">Pink</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="shop-sidebar.html"
-                                                            class="product-color-swatch-btn red">
+                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn red">
                                                             <span class="product-color-swatch-label">Red</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="shop-sidebar.html"
-                                                            class="product-color-swatch-btn grey">
+                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn grey">
                                                             <span class="product-color-swatch-label">Grey</span>
                                                         </a>
                                                     </li>
@@ -1258,7 +1254,8 @@
                         </div>
                         <nav class="pagination-wrap">
                             <ul class="pagination">
-                                <li><a href="#" class="prev page-number"><i class="fa fa-angle-double-left"></i></a>
+                                <li><a href="#" class="prev page-number"><i
+                                            class="fa fa-angle-double-left"></i></a>
                                 </li>
                                 <li><span class="current page-number">1</span></li>
                                 <li><a href="#" class="page-number">2</a></li>
