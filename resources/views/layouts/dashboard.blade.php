@@ -1093,6 +1093,8 @@
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('dashboard_assets') }}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <script src="{{ asset('dashboard_assets') }}/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/plugins/custom/tinymce/tinymce.bundle.js"></script>
+
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('dashboard_assets') }}/js/widgets.bundle.js"></script>
@@ -1104,6 +1106,7 @@
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     @livewireScripts
+    @yield('footer_scripts')
 </body>
 <!--end::Body-->
 

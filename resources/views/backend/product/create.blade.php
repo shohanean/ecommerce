@@ -104,7 +104,8 @@
                                             <span class="required">Stock Keeping Unit (SKU)</span>
                                         </label>
                                         <!--end::Label-->
-                                        <input class="form-control" type="text" name="sku" value="{{ Str::upper(Str::random(6)) }}">
+                                        <input class="form-control" type="text" name="sku"
+                                            value="{{ Str::upper(Str::random(6)) }}">
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +129,7 @@
                                             <span class="required">Long Description</span>
                                         </label>
                                         <!--end::Label-->
-                                        <textarea class="form-control" name="long_description" rows="4"></textarea>
+                                        <textarea id="long_description_editor" class="form-control" name="long_description" rows="4"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -143,4 +144,18 @@
         <!--end::Aside column-->
     </div>
     <!--end::Form-->
+@endsection
+
+@section('footer_scripts')
+    <script>
+        tinymce.init({
+            selector: "#long_description_editor",
+            menubar: false,
+            toolbar: [
+                "styleselect fontselect fontsizeselect",
+                "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | print preview"
+            ],
+            plugins: "advlist autolink link image lists charmap print preview code"
+        });
+    </script>
 @endsection
