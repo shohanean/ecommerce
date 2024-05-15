@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Product_tag;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -45,23 +46,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->tags;
-        // $old_tags = array_filter($request->tags, 'is_int');
-        // $new_tags = array_filter($request->tags, 'is_string');
-        // return $new_tags;
+        // Product_tag
+        $product = Product::create($request->except('_token', 'tags') + [
+            'slug' => Str::slug($request->name)
+        ]);
         foreach ($request->tags as $tag) {
             if ((int)$tag == 0) {
                 // conversion giving zero that means it is coming as string so a new tag
-                Tag::create([
+                $tag = Tag::create([
                     'name' => $tag
+                ]);
+
+                Product_tag::create([
+                    'product_id' => $product->id,
+                    'tag_id' => $tag->id
                 ]);
             } else {
                 // conversion giving any value than zero that means it is already existed in the database
+                Product_tag::create([
+                    'product_id' => $product->id,
+                    'tag_id' => $tag
+                ]);
             }
         }
-        // Product::create($request->except('_token') + [
-        //     'slug' => Str::slug($request->name)
-        // ]);
         return back();
     }
 

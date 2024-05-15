@@ -71,8 +71,8 @@
                                         <!--end::Label-->
                                         <select class="form-select" name="">
                                             <option value="">-Select Subcategory-</option>
-                                            <option value="">-asdasd Subcategory-</option>
-                                            <option value="">-g Subcategory-</option>
+                                            <option value="">asdasd</option>
+                                            <option value="">gorge</option>
                                         </select>
                                     </div>
                                 </div>
