@@ -133,6 +133,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                            <span class="required">Tags</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <select class="form-control" id="tags_dropdown" multiple="multiple" name="tags[]">
+                                            @foreach ($tags as $tag)
+                                                <option value={{ $tag->id }}>{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-info">Add New Product</button>
                         </form>
                     </div>
@@ -148,14 +164,19 @@
 
 @section('footer_scripts')
     <script>
-        tinymce.init({
-            selector: "#long_description_editor",
-            menubar: false,
-            toolbar: [
-                "styleselect fontselect fontsizeselect",
-                "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | print preview"
-            ],
-            plugins: "advlist autolink link image lists charmap print preview code"
+        $(document).ready(function() {
+            $('#tags_dropdown').select2({
+                tags: true
+            });
+            tinymce.init({
+                selector: "#long_description_editor",
+                menubar: false,
+                toolbar: [
+                    "styleselect fontselect fontsizeselect",
+                    "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | print preview"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
         });
     </script>
 @endsection

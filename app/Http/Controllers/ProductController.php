@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view('backend.product.index', compact('products'));
     }
 
@@ -31,7 +32,8 @@ class ProductController extends Controller
     {
         return view('backend.product.create', [
             'collections' => Collection::all(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'tags' => Tag::all()
         ]);
     }
 
@@ -43,9 +45,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->except('_token') + [
-            'slug' => Str::slug($request->name)
-        ]);
+        // return $request->tags;
+        // $old_tags = array_filter($request->tags, 'is_int');
+        // $new_tags = array_filter($request->tags, 'is_string');
+        // return $new_tags;
+        foreach ($request->tags as $tag) {
+            if ((int)$tag == 0) {
+                // conversion giving zero that means it is coming as string so a new tag
+                Tag::create([
+                    'name' => $tag
+                ]);
+            } else {
+                // conversion giving any value than zero that means it is already existed in the database
+            }
+        }
+        // Product::create($request->except('_token') + [
+        //     'slug' => Str::slug($request->name)
+        // ]);
         return back();
     }
 

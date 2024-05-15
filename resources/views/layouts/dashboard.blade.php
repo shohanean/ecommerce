@@ -1103,6 +1103,8 @@
     <script src="{{ asset('dashboard_assets') }}/js/custom/utilities/modals/upgrade-plan.js"></script>
     <script src="{{ asset('dashboard_assets') }}/js/custom/utilities/modals/create-app.js"></script>
     <script src="{{ asset('dashboard_assets') }}/js/custom/utilities/modals/users-search.js"></script>
+
+    <script src="{{ asset('dashboard_assets') }}/js/custom/documentation/forms/select2.js"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     @livewireScripts
