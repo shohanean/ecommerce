@@ -11,7 +11,12 @@ class Category extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
-    function subcategory(){
+    function subcategory()
+    {
         return $this->hasMany(Subcategory::class, 'category_id', 'id')->latest();
+    }
+    function product_count($id)
+    {
+        return Product::where('category_id', $id)->count();
     }
 }

@@ -261,13 +261,21 @@
                                             {{ $product->category->name }}
                                         </a>
                                     </span>
-                                    <span class="posted_in font-size-12">Tags:
+                                    <div class="tagcloud">
+                                        Tags:
+                                        @foreach ($product->product_tag as $p_tag)
+                                            <a href="shop-sidebar.html">{{ $p_tag->tag->name }}</a>
+                                        @endforeach
+                                    </div>
+                                    {{-- <span class="posted_in font-size-12">Tags:
                                         @foreach ($product->product_tag as $p_tag)
                                             <a href="link_here">
-                                                {{ $p_tag->tag->name }}@if (!$loop->last),@endif
+                                                {{ $p_tag->tag->name }}@if (!$loop->last)
+                                                    ,
+                                                @endif
                                             </a>
                                         @endforeach
-                                    </span>
+                                    </span> --}}
                                 </div>
                                 <div class="product-share-box">
                                     <span class="font-size-12">Share With</span>

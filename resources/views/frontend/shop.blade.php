@@ -254,7 +254,8 @@
                                                 </figure>
                                                 <div class="product-info text-center">
                                                     <h3 class="product-title">
-                                                        <a href="{{ route('product.details', $product->slug) }}">{{ $product->name }}</a>
+                                                        <a
+                                                            href="{{ route('product.details', $product->slug) }}">{{ $product->name }}</a>
                                                     </h3>
                                                     <div class="product-rating">
                                                         <span>
@@ -405,7 +406,7 @@
                                     @foreach (categories() as $category)
                                         <li>
                                             <a href="">{{ $category->name }}</a>
-                                            <span class="count">(0)</span>
+                                            <span class="count">({{ $category->product_count($category->id) }})</span>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -493,16 +494,9 @@
                             <div class="product-widget tag-widget mb--35 mb-md--30">
                                 <h3 class="widget-title">Tags</h3>
                                 <div class="tagcloud">
-                                    <a href="shop-sidebar.html">chair</a>
-                                    <a href="shop-sidebar.html">deco</a>
-                                    <a href="shop-sidebar.html">dress</a>
-                                    <a href="shop-sidebar.html">fashion</a>
-                                    <a href="shop-sidebar.html">furniture</a>
-                                    <a href="shop-sidebar.html">light</a>
-                                    <a href="shop-sidebar.html">living</a>
-                                    <a href="shop-sidebar.html">sofa</a>
-                                    <a href="shop-sidebar.html">table</a>
-                                    <a href="shop-sidebar.html">women</a>
+                                    @foreach ($tags as $tag)
+                                        <a href="shop-sidebar.html">{{ $tag->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- Category Widget Start -->

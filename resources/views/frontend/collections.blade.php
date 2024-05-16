@@ -30,19 +30,23 @@
                                         <img src="{{ $collection->thumbnail }}" alt="not found">
                                     </div>
                                     <div class="banner-info">
-                                        <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">{{ $collection->top_title }}</p>
-                                        <h2 class="banner-title-2">{{ $collection->lower_title }} <strong>{{ $collection->strong_title }}</strong></h2>
+                                        <p class="banner-title-1 lts-13 lts-lg-4 text-uppercase">
+                                            {{ $collection->top_title }}</p>
+                                        <h2 class="banner-title-2">{{ $collection->lower_title }}
+                                            <strong>{{ $collection->strong_title }}</strong>
+                                        </h2>
                                     </div>
-                                    <a class="banner-link banner-overlay" href="#">Shop Now</a>
+                                    <a class="banner-link banner-overlay"
+                                        href="{{ route('s.collections', $collection->slug) }}">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                     @empty
-                    <div class="col-md-8 m-auto">
-                        <div class="alert alert-danger mt-3">
-                            No collection is available now
+                        <div class="col-md-8 m-auto">
+                            <div class="alert alert-danger mt-3">
+                                No collection is available now
+                            </div>
                         </div>
-                    </div>
                     @endforelse
 
                     {{-- <div class="col-md-4">

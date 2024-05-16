@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Product;
+use App\Models\Tag;
 
 class FrontendController extends Controller
 {
@@ -27,12 +28,20 @@ class FrontendController extends Controller
     function shop()
     {
         $products = Product::all();
-        return view('frontend.shop', compact('products'));
+        $tags = Tag::all();
+        return view('frontend.shop', compact('products', 'tags'));
     }
     function collections()
     {
         return view('frontend.collections', [
             'collections' => Collection::latest()->get()
+        ]);
+    }
+    function s_collections($slug)
+    {
+        $collection = Collection::where('slug', $slug)->firstOrFail();
+        return view('frontend.s_collections', [
+            'products' => Product::where('collection_id', $collection->id)->get()
         ]);
     }
     function contact_us()
