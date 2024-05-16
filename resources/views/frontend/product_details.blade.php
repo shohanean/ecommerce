@@ -262,9 +262,11 @@
                                         </a>
                                     </span>
                                     <span class="posted_in font-size-12">Tags:
-                                        <a href="shop-sidebar.html">dress,</a>
-                                        <a href="shop-sidebar.html">fashions,</a>
-                                        <a href="shop-sidebar.html">women</a>
+                                        @foreach ($product->product_tag as $p_tag)
+                                            <a href="link_here">
+                                                {{ $p_tag->tag->name }}@if (!$loop->last),@endif
+                                            </a>
+                                        @endforeach
                                     </span>
                                 </div>
                                 <div class="product-share-box">

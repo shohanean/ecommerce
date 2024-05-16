@@ -21,7 +21,7 @@ class FrontendController extends Controller
     }
     function product_details($slug)
     {
-        $product = Product::with('category')->where('slug', $slug)->firstOrFail();
+        $product = Product::with(['category', 'product_tag'])->where('slug', $slug)->firstOrFail();
         return view('frontend.product_details', compact('product'));
     }
     function shop()

@@ -10,4 +10,8 @@ class Product_tag extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+    function tag()
+    {
+        return $this->hasOne(Tag::class, 'id', 'tag_id');
+    }
 }
