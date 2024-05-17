@@ -58,11 +58,11 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>asdasd</td>
+                                            <td>{{ $product->created_at->diffForHumans() }}</td>
                                             <td class="text-end">
-                                                <a href="{{ route('product.show', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Edit</a>
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-bg-danger btn-color-white btn-active-color-primary btn-sm px-4 me-2">Delete</button>

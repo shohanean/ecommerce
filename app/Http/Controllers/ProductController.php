@@ -48,7 +48,8 @@ class ProductController extends Controller
     {
         // Product_tag
         $product = Product::create($request->except('_token', 'tags') + [
-            'slug' => Str::slug($request->name)
+            'slug' => Str::slug($request->name),
+            'user_id' => auth()->id()
         ]);
         foreach ($request->tags as $tag) {
             if ((int)$tag == 0) {

@@ -95,6 +95,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                            Status
+                                        </label>
+                                        <select class="form-select" name="status">
+                                            <option value="">-Select Status-</option>
+                                            <option value="new">New</option>
+                                            <option value="hot">Hot</option>
+                                            <option value="sale">Sale</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-3">

@@ -32,7 +32,10 @@
                         </a>
                     </div>
                 </div>
-                <span class="product-badge new">New</span>
+                @isset($product->status)
+                    <span class="product-badge {{ $product->status }}">{{ $product->status }}</span>
+                @endisset
+
             </figure>
             <div class="product-info text-center">
                 <h3 class="product-title">
