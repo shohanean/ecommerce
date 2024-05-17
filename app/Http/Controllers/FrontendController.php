@@ -26,11 +26,14 @@ class FrontendController extends Controller
         $product = Product::with(['category', 'product_tag'])->where('slug', $slug)->firstOrFail();
         return view('frontend.product_details', compact('product'));
     }
-    function shop()
+    function shop(Request $request, $per_page = 10)
     {
-        $products = Product::all();
+        if ($request->per_page) {
+            $per_page = $request->per_page;
+        }
+        $products = Product::paginate($per_page)->withQueryString();
         $tags = Tag::all();
-        return view('frontend.shop', compact('products', 'tags'));
+        return view('frontend.shop', compact('products', 'tags', 'per_page'));
     }
     function collections()
     {

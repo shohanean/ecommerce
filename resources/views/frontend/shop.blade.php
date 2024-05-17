@@ -28,13 +28,18 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-6 text-md-start text-center mb-sm--20">
                                         <div class="shop-toolbar__left">
-                                            <p class="product-pages">Showing 1–20 of 42 results</p>
+                                            <p class="product-pages">Showing
+                                                {{ $products->firstItem() }}–{{ $products->lastItem() }} of
+                                                {{ $products->total() }} results</p>
                                             <div class="product-view-count">
                                                 <p>Show</p>
                                                 <ul>
-                                                    <li><a href="shop-sidebar.html">6</a></li>
-                                                    <li class="active"><a href="shop-sidebar.html">12</a></li>
-                                                    <li><a href="shop-sidebar.html">15</a></li>
+                                                    <li class="@if ($per_page == 10) active @endif"><a
+                                                            href="{{ route('shop') }}?per_page=10">10</a></li>
+                                                    <li class="@if ($per_page == 20) active @endif"><a
+                                                            href="{{ route('shop') }}?per_page=20">20</a></li>
+                                                    <li class="@if ($per_page == 50) active @endif"><a
+                                                            href="{{ route('shop') }}?per_page=50">50</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -214,7 +219,7 @@
                                 @foreach ($products as $product)
                                     @include('frontend.inc.single_product')
                                 @endforeach
-                                <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
+                                {{-- <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
                                     <div class="airi-product">
                                         <div class="product-inner">
                                             <figure class="product-image">
@@ -319,20 +324,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
-                        <nav class="pagination-wrap">
-                            <ul class="pagination">
-                                <li><a href="shop-sidebar.html" class="prev page-number"><i
-                                            class="fa fa-angle-double-left"></i></a></li>
-                                <li><span class="current page-number">1</span></li>
-                                <li><a href="shop-sidebar.html" class="page-number">2</a></li>
-                                <li><a href="shop-sidebar.html" class="page-number">3</a></li>
-                                <li><a href="shop-sidebar.html" class="next page-number"><i
-                                            class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </nav>
+                        {{ $products->links('frontend.inc.pagination') }}
                     </div>
                     <div class="col-lg-3 order-lg-1 mt--30 mt-md--40" id="primary-sidebar">
                         <div class="sidebar-widget">
