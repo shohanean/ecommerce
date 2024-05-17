@@ -264,10 +264,13 @@
         <div class="container-fluid">
             <div class="row mb--40 mb-md--30">
                 <div class="col-12">
-                    <h2 class="heading-secondary text-center">Trending</h2>
+                    <h2 class="heading-secondary text-center">New & Trending</h2>
                 </div>
             </div>
             <div class="row">
+                @foreach ($products as $product)
+                    @include('frontend.inc.single_product')
+                @endforeach
                 <div class="col-xl-3 col-lg-4 col-sm-6 mb--40 mb-md--30">
                     <div class="airi-product">
                         <div class="product-inner">

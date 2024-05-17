@@ -12,7 +12,8 @@ class FrontendController extends Controller
 {
     function index()
     {
-        return view('frontend.index');
+        $products = Product::latest()->take(5)->get();
+        return view('frontend.index', compact('products'));
     }
     function s_category($slug)
     {
