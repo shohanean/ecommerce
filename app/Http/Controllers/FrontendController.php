@@ -31,7 +31,17 @@ class FrontendController extends Controller
         if ($request->per_page) {
             $per_page = $request->per_page;
         }
-        $products = Product::paginate($per_page)->withQueryString();
+        $products = Product::latest()->paginate($per_page)->withQueryString();
+        // ->appends([
+        //     'search' => "asd",
+        //     'sort_by' => "xcvbvxcb",
+        // ]);
+        if ($request->sort) {
+            $products = Product::orderBy('name', $request->sort)->latest()->paginate($per_page)->withQueryString();
+        }
+        if ($request->price) {
+            return "needs to be developer";
+        }
         $tags = Tag::all();
         return view('frontend.shop', compact('products', 'tags', 'per_page'));
     }

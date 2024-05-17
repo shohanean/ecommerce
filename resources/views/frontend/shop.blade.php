@@ -46,171 +46,21 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="shop-toolbar__right">
-                                            <a href="#" class="product-filter-btn shop-toolbar__btn">
-                                                <span>Filters</span>
-                                                <i></i>
-                                            </a>
                                             <div class="product-ordering">
-                                                <a href="" class="product-ordering__btn shop-toolbar__btn">
+                                                <span href="" class="product-ordering__btn shop-toolbar__btn">
                                                     <span>Short By</span>
                                                     <i></i>
-                                                </a>
+                                                </span>
                                                 <ul class="product-ordering__list">
-                                                    <li class="active"><a href="#">Sort by popularity</a></li>
-                                                    <li><a href="#">Sort by average rating</a></li>
-                                                    <li><a href="#">Sort by newness</a></li>
-                                                    <li><a href="#">Sort by price: low to high</a></li>
-                                                    <li><a href="#">Sort by price: high to low</a></li>
+                                                    <li class="active"><a href="#">Sort by newness</a></li>
+                                                    <li><a href="{{ route('shop') }}?sort=asc">Sort by name: A-Z</a></li>
+                                                    <li><a href="{{ route('shop') }}?sort=desc">Sort by name: Z-A</a></li>
+                                                    <li><a href="{{ route('shop') }}?price=asc">Sort by price: Low to High</a></li>
+                                                    <li><a href="{{ route('shop') }}?price=asc">Sort by price: High to Low</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="advanced-product-filters">
-                                <div class="product-filter">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="product-widget product-widget--price">
-                                                <h3 class="widget-title">Price</h3>
-                                                <ul class="product-widget__list">
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$20.00</span>
-                                                            <span> - </span>
-                                                            <span class="ammount">$40.00</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$40.00</span>
-                                                            <span> - </span>
-                                                            <span class="ammount">$50.00</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$50.00</span>
-                                                            <span> - </span>
-                                                            <span class="ammount">$60.00</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$60.00</span>
-                                                            <span> - </span>
-                                                            <span class="ammount">$80.00</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$80.00</span>
-                                                            <span> - </span>
-                                                            <span class="ammount">$100.00</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span class="ammount">$100.00</span>
-                                                            <span> + </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="product-widget product-widget--brand">
-                                                <h3 class="widget-title">Brands</h3>
-                                                <ul class="product-widget__list">
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>Airi</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>Mango</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>Valention</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>Zara</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="product-widget product-widget--color">
-                                                <h3 class="widget-title">Color</h3>
-                                                <ul class="product-widget__list product-color-swatch">
-                                                    <li>
-                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn blue">
-                                                            <span class="product-color-swatch-label">Blue</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn green">
-                                                            <span class="product-color-swatch-label">Green</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn pink">
-                                                            <span class="product-color-swatch-label">Pink</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn red">
-                                                            <span class="product-color-swatch-label">Red</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html" class="product-color-swatch-btn grey">
-                                                            <span class="product-color-swatch-label">Grey</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="product-widget product-widget--size">
-                                                <h3 class="widget-title">Size</h3>
-                                                <ul class="product-widget__list">
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>L</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>M</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>S</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>XL</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-sidebar.html">
-                                                            <span>XXL</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn-close"><i class="dl-icon-close"></i></a>
                                 </div>
                             </div>
                         </div>
