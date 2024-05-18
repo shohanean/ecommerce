@@ -18,12 +18,15 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->integer('user_id');
             $table->integer('category_id');
+            $table->integer('subcategory_id')->nullable();
             $table->integer('collection_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('short_description');
             $table->longText('long_description');
             $table->string('status')->nullable()->comment('new, sale, hot etc');
+            $table->text('primary_image');
+            $table->text('secondary_image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

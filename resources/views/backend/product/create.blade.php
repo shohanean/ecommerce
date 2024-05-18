@@ -31,7 +31,7 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <div class="d-flex flex-column gap-10">
-                        <form action="{{ route('product.store') }}" method="POST">
+                        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -69,7 +69,7 @@
                                             <span class="required">Subcategory Name</span>
                                         </label>
                                         <!--end::Label-->
-                                        <select class="form-select" name="">
+                                        <select class="form-select" name="subcategory_id">
                                             <option value="">-Select Subcategory-</option>
                                             <option value="">asdasd</option>
                                             <option value="">gorge</option>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -95,7 +95,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -109,9 +109,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
+                                <div class="col-4">
                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -160,6 +158,37 @@
                                                 <option value={{ $tag->id }}>{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-6">
+                                <div class="col-12">
+                                    <div class="card border">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-center">Image Section</h4>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span class="required">Primary Image</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input type="file" class="form-control" name="primary_image">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            Secondary Image
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input type="file" class="form-control" name="secondary_image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
