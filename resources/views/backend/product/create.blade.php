@@ -226,6 +226,80 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-6">
+                                <div class="col-12">
+                                    <div class="card border">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-center mb-7">
+                                                <i class="fas fa-truck-loading"></i>
+                                                Add Inventory Section
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Color</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <select class="form-select" name="color_id">
+                                                            <option value="">-Select One Color-</option>
+                                                            @foreach ($colors as $color)
+                                                                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Size</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <select class="form-select" name="size_id">
+                                                            <option value="">-Select One Size-</option>
+                                                            @foreach ($sizes as $size)
+                                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Purchase Price</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input class="form-control" type="number" name="purchase_price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Selling Price</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input class="form-control" type="number" name="selling_price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Offer Price</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input class="form-control" type="number" name="offer_price">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-info">Add New Product</button>
                         </form>
                     </div>

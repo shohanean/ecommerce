@@ -8,6 +8,9 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Product_tag;
 use App\Models\Tag;
+use App\Models\Color;
+use App\Models\Size;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -34,6 +37,8 @@ class ProductController extends Controller
         return view('backend.product.create', [
             'collections' => Collection::all(),
             'categories' => Category::all(),
+            'colors' => Color::all(),
+            'sizes' => Size::all(),
             'tags' => Tag::all()
         ]);
     }
@@ -56,7 +61,7 @@ class ProductController extends Controller
             'primary_image' => 'required|image',
             'secondary_image' => 'nullable|image'
         ]);
-        $product = Product::create($request->except('_token', 'tags') + [
+        $product = Product::create($request->except('_token', 'tags', 'color_id', 'size_id', 'purchase_price', 'selling_price', 'offer_price') + [
             'slug' => Str::slug($request->name),
             'user_id' => auth()->id()
         ]);
@@ -88,6 +93,20 @@ class ProductController extends Controller
         }
         $product->save();
         //image upload end
+
+        //if initial inventory added start
+        if ($request->color_id) {
+            Inventory::create([
+                'user_id' => auth()->id(),
+                'product_id' => $product->id,
+                'color_id' => $request->color_id,
+                'size_id' => $request->size_id,
+                'purchase_price' => $request->purchase_price,
+                'selling_price' => $request->selling_price,
+                'offer_price' => $request->offer_price
+            ]);
+        }
+        //if initial inventory added end
         return back()->with('success', 'Product Added Successfully!');
     }
 
