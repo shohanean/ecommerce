@@ -4,10 +4,14 @@
             <figure class="product-image">
                 <div class="product-image--holder">
                     <a href="product-details.html">
-                        <img src="{{ asset('frontend_assets') }}/img/products/prod-19-4.jpg" alt="Product Image"
-                            class="primary-image">
-                        <img src="{{ asset('frontend_assets') }}/img/products/prod-19-1.jpg" alt="Product Image"
-                            class="secondary-image">
+
+
+                        <img src="{{ $product->primary_image }}" alt="Product Image" class="primary-image">
+                        @isset($product->secondary_image)
+                            <img src="{{ $product->secondary_image }}" alt="Product Image" class="secondary-image">
+                        @else
+                            <img src="{{ $product->primary_image }}" alt="Product Image" class="secondary-image">
+                        @endisset
                     </a>
                 </div>
                 <div class="airi-product-action">

@@ -165,7 +165,10 @@
                                 <div class="col-12">
                                     <div class="card border">
                                         <div class="card-body">
-                                            <h4 class="card-title text-center">Image Section</h4>
+                                            <h4 class="card-title text-center mb-7">
+                                                <i class="far fa-images"></i>
+                                                Image Section
+                                            </h4>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -184,7 +187,8 @@
                                                             Secondary Image
                                                         </label>
                                                         <!--end::Label-->
-                                                        <input type="file" class="form-control" name="secondary_image">
+                                                        <input type="file" class="form-control"
+                                                            name="secondary_image">
                                                     </div>
                                                 </div>
                                             </div>

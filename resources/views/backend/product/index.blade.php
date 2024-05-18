@@ -10,7 +10,7 @@
             'home' => 'home',
             'Product' => 'product.index',
         ],
-        'right_btn' => ['Add New Product', 'product.create']
+        'right_btn' => ['Add New Product', 'product.create'],
     ])
 @endsection
 
@@ -46,13 +46,15 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @forelse ($products as $product)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#"
-                                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $product->name }}</a>
+                                                        <a href="{{ route('product.details', $product->slug) }}" target="_blank"
+                                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                                            {{ $product->name }} <i class="fas fa-link"></i>
+                                                        </a>
                                                         <span
                                                             class="text-muted fw-bold text-muted d-block fs-7">{{ $product->description }}</span>
                                                     </div>
@@ -61,15 +63,24 @@
                                             <td>{{ $product->created_at->diffForHumans() }}</td>
                                             <td class="text-end">
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Edit</a>
+                                                    <a href="{{ route('product.show', $product->id) }}"
+                                                        class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                    <a href="{{ route('product.edit', $product->id) }}"
+                                                        class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-bg-danger btn-color-white btn-active-color-primary btn-sm px-4 me-2">Delete</button>
+                                                    <button
+                                                        class="btn btn-bg-danger btn-color-white btn-active-color-primary btn-sm px-4 me-2">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr class="text-center">
+                                            <td colspan="50">
+                                                <div class="alert alert-danger">No product to show</div>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                                 <!--end::Table body-->
                             </table>

@@ -119,14 +119,16 @@
                                             <div class="product-gallery__actions">
                                                 <button class="action-btn btn-zoom-popup"><i
                                                         class="dl-icon-zoom-in"></i></button>
-                                                <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM"
-                                                    class="action-btn video-popup"><i class="dl-icon-format-video"></i></a>
+                                                {{-- <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM"
+                                                    class="action-btn video-popup"><i class="dl-icon-format-video"></i></a> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <span class="product-badge new">New</span>
+                            @isset($product->status)
+                                <span class="product-badge {{ $product->status }}">{{ $product->status }}</span>
+                            @endisset
                         </div>
                     </div>
                     <div class="col-md-6 product-main-details mt--40 mt-md--10 mt-sm--30">
@@ -139,7 +141,8 @@
                                     <i class="dl-icon-star rated"></i>
                                     <i class="dl-icon-star rated"></i>
                                 </span>
-                                <a href="#" class="review-link">(1 customer review)</a>
+                                <a href="#" class="review-link">(100 customer
+                                    review)</a>
                             </div>
                             <div class="product-navigation">
                                 <a href="#" class="prev"><i class="dl-icon-left"></i></a>
@@ -162,7 +165,13 @@
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
-                                    <div class="product-color-swatch variation-wrapper">
+                                    <select name="" class="form-select">
+                                        <option value="">-Select Color-</option>
+                                        <option value="">Red</option>
+                                        <option value="">Blue</option>
+                                        <option value="">Green</option>
+                                    </select>
+                                    {{-- <div class="product-color-swatch variation-wrapper">
                                         <div class="swatch-wrapper">
                                             <a class="product-color-swatch-btn variation-btn blue" data-bs-toggle="tooltip"
                                                 data-bs-placement="left" title="Blue">
@@ -193,7 +202,7 @@
                                                 <span class="product-color-swatch-label">white</span>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="product-size-variations">
                                     <p class="swatch-label">Size: <strong class="swatch-label"></strong></p>

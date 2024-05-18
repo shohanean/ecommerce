@@ -46,7 +46,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Product_tag
         $product = Product::create($request->except('_token', 'tags') + [
             'slug' => Str::slug($request->name),
             'user_id' => auth()->id()
@@ -70,6 +69,15 @@ class ProductController extends Controller
                 ]);
             }
         }
+        //image upload start
+        $upload = $request->primary_image->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME') . '/product_images');
+        $product->primary_image = $upload->getSecurePath();
+        if ($request->hasFile('secondary_image')) {
+            $upload = $request->secondary_image->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME') . '/product_images');
+            $product->secondary_image = $upload->getSecurePath();
+        }
+        $product->save();
+        //image upload end
         return back();
     }
 
