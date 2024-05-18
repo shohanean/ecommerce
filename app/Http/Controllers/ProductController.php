@@ -46,6 +46,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'sku' => 'required',
+            'short_description' => 'required',
+            'long_description' => 'required',
+            'tags' => 'required',
+            'primary_image' => 'required|image',
+            'secondary_image' => 'nullable|image'
+        ]);
         $product = Product::create($request->except('_token', 'tags') + [
             'slug' => Str::slug($request->name),
             'user_id' => auth()->id()
@@ -78,7 +88,7 @@ class ProductController extends Controller
         }
         $product->save();
         //image upload end
-        return back();
+        return back()->with('success', 'Product Added Successfully!');
     }
 
     /**

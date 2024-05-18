@@ -31,6 +31,12 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <div class="d-flex flex-column gap-10">
+                        @session('success')
+                        <div class="alert alert-success">
+                            {{ $value }}
+                        </div>
+                        @endsession
+
                         <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -41,8 +47,11 @@
                                             <span class="required">Product Name</span>
                                         </label>
                                         <!--end::Label-->
-                                        <input type="text" class="form-control" placeholder="Enter Product Name"
-                                            name="name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Product Name"
+                                            name="name" value="{{ old('name') }}">
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -54,19 +63,22 @@
                                             <span class="required">Category Name</span>
                                         </label>
                                         <!--end::Label-->
-                                        <select class="form-select" name="category_id">
+                                        <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
                                             <option value="">-Select Category-</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option {{ (old('category_id') == $category->id) ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('category_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                            <span class="required">Subcategory Name</span>
+                                            <span>Subcategory Name</span>
                                         </label>
                                         <!--end::Label-->
                                         <select class="form-select" name="subcategory_id">
@@ -116,8 +128,11 @@
                                             <span class="required">Stock Keeping Unit (SKU)</span>
                                         </label>
                                         <!--end::Label-->
-                                        <input class="form-control" type="text" name="sku"
+                                        <input class="form-control @error('sku') is-invalid @enderror" type="text" name="sku"
                                             value="{{ Str::upper(Str::random(6)) }}">
+                                        @error('sku')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +144,10 @@
                                             <span class="required">Short Description</span>
                                         </label>
                                         <!--end::Label-->
-                                        <textarea class="form-control" name="short_description" rows="3"></textarea>
+                                        <textarea class="form-control @error('short_description') is-invalid @enderror" name="short_description" rows="3">{{ old('short_description') }}</textarea>
+                                        @error('short_description')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +159,10 @@
                                             <span class="required">Long Description</span>
                                         </label>
                                         <!--end::Label-->
-                                        <textarea id="long_description_editor" class="form-control" name="long_description" rows="4"></textarea>
+                                        <textarea id="long_description_editor" class="form-control @error('long_description') is-invalid @enderror" name="long_description">{{ old('long_description') }}</textarea>
+                                        @error('long_description')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -153,11 +174,14 @@
                                             <span class="required">Tags</span>
                                         </label>
                                         <!--end::Label-->
-                                        <select class="form-control" id="tags_dropdown" multiple="multiple" name="tags[]">
+                                        <select class="form-control @error('tags') is-invalid @enderror" id="tags_dropdown" multiple="multiple" name="tags[]">
                                             @foreach ($tags as $tag)
                                                 <option value={{ $tag->id }}>{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('tags')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +201,10 @@
                                                             <span class="required">Primary Image</span>
                                                         </label>
                                                         <!--end::Label-->
-                                                        <input type="file" class="form-control" name="primary_image">
+                                                        <input type="file" class="form-control @error('primary_image') is-invalid @enderror" name="primary_image">
+                                                        @error('primary_image')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -187,8 +214,11 @@
                                                             Secondary Image
                                                         </label>
                                                         <!--end::Label-->
-                                                        <input type="file" class="form-control"
+                                                        <input type="file" class="form-control @error('secondary_image') is-invalid @enderror"
                                                             name="secondary_image">
+                                                        @error('secondary_image')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
