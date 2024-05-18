@@ -16,9 +16,27 @@
         </div>
     </div>
     <!-- Breadcrumb area End -->
+    <!-- Main Content Wrapper Start -->
+    <div id="content" class="main-content-wrapper {{ ($products->count()) != 0 ? 'd-none':'' }}">
+        <div class="page-content-inner">
+            <div class="container">
+                <div class="row justify-content-center ptb--100">
+                    <div class="col-lg-8 text-center">
+                        <div class="error-text">
+                            <img width="300" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-search-4320171-3598806.png" alt="nothing to show">
+                            <h2 class="error-heading mt--20">No item cannot be found!</h2>
+                            <p class="mb--40">It looks like nothing was found at this locations.</p>
+                            <a href="{{ route('index') }}" class="btn btn-color-gray btn-medium btn-bordered btn-style-1">Back to home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper Start -->
 
     <!-- Main Content Wrapper Start -->
-    <div id="content" class="main-content-wrapper">
+    <div id="content" class="main-content-wrapper {{ ($products->count()) == 0 ? 'd-none':'' }}">
         <div class="shop-page-wrapper">
             <div class="container-fluid">
                 <div class="row shop-fullwidth pt--45 pt-md--35 pt-sm--20 pb--60 pb-md--50 pb-sm--40">

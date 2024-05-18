@@ -64,7 +64,7 @@
                                 <!-- Main Navigation Start Here -->
                                 <nav class="main-navigation">
                                     <ul class="mainmenu">
-                                        <li class="mainmenu__item active">
+                                        <li class="mainmenu__item">
                                             <a href="{{ route('index') }}" class="mainmenu__link">
                                                 <span class="mm-text">Home</span>
                                             </a>
@@ -94,17 +94,17 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li class="mainmenu__item">
+                                        <li class="mainmenu__item @yield('shop')">
                                             <a href="{{ route('shop') }}" class="mainmenu__link">
                                                 <span class="mm-text">Shop</span>
                                             </a>
                                         </li>
-                                        <li class="mainmenu__item">
+                                        <li class="mainmenu__item @yield('collections')">
                                             <a href="{{ route('collections') }}" class="mainmenu__link">
                                                 <span class="mm-text">Collections</span>
                                             </a>
                                         </li>
-                                        <li class="mainmenu__item">
+                                        <li class="mainmenu__item @yield('contact.us')">
                                             <a href="{{ route('contact.us') }}" class="mainmenu__link">
                                                 <span class="mm-text">Contact Us</span>
                                             </a>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="col-lg-2 col-md-3 col-4 text-lg-center">
                                 <!-- Logo Start Here -->
-                                <a href="index.html" class="logo-box">
+                                <a href="{{ route('index') }}" class="logo-box">
                                     <figure class="logo--normal">
                                         <img src="{{ asset('frontend_assets') }}/img/logo/logo.svg" alt="Logo" />
                                     </figure>
