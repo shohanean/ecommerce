@@ -118,7 +118,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        // return $product::with('product_tag');
     }
 
     /**
