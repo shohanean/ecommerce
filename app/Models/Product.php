@@ -15,6 +15,10 @@ class Product extends Model
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+    function inventory()
+    {
+        return $this->hasMany(Inventory::class, 'product_id', 'id');
+    }
     function product_tag()
     {
         return $this->hasMany(Product_tag::class, 'product_id', 'id');
