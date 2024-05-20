@@ -10,4 +10,12 @@ class Inventory extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+    function color()
+    {
+        return $this->hasOne(Color::class, 'id', 'color_id');
+    }
+    function size()
+    {
+        return $this->hasOne(Size::class, 'id', 'color_id');
+    }
 }

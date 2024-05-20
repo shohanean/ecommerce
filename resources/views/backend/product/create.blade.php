@@ -235,7 +235,7 @@
                                                 Add Inventory Section
                                             </h4>
                                             <div class="row">
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -250,7 +250,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -293,6 +293,16 @@
                                                         </label>
                                                         <!--end::Label-->
                                                         <input class="form-control" type="number" name="offer_price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                            <span>Quantity</span>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input class="form-control" type="number" name="quantity">
                                                     </div>
                                                 </div>
                                             </div>

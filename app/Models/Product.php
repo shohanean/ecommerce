@@ -15,6 +15,14 @@ class Product extends Model
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+    function collection()
+    {
+        return $this->hasOne(Collection::class, 'id', 'collection_id');
+    }
+    function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
     function inventory()
     {
         return $this->hasMany(Inventory::class, 'product_id', 'id');

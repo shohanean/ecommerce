@@ -10,7 +10,7 @@
             'home' => 'home',
             'Product' => 'product.index',
             $product->name => 'link',
-        ]
+        ],
     ])
 @endsection
 
@@ -21,18 +21,34 @@
         <div class="w-100 flex-lg-row-auto mb-7 me-7 me-lg-10">
             <div class="row mb-4">
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ $product->primary_image }}" alt="not found" />
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h4 class="card-title">{{ $product->name }}</h4>
-                            <p class="card-text">{{ $product->short_description }}</p>
                         </div>
                     </div>
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="{{ $product->primary_image }}" alt="not found" />
+                        <div class="card-body">
+                            <h4 class="card-title">Primary Image</h4>
+                        </div>
+                    </div>
+                    @isset($product->secondary_image)
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="{{ $product->secondary_image }}" alt="not found" />
+                            <div class="card-body">
+                                <h4 class="card-title">Secondary Image</h4>
+                            </div>
+                        </div>
+                    @endisset
                 </div>
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">Description</h3>
+                            <h3 class="card-title">Short Description</h3>
+                            <p class="card-text">
+                                {!! $product->short_description !!}
+                            </p>
+                            <h3 class="card-title">Long Description</h3>
                             <p class="card-text">
                                 {!! $product->long_description !!}
                             </p>
@@ -41,11 +57,11 @@
                                     <tbody>
                                         <tr>
                                             <td>Added By</td>
-                                            <td>{{ $product->user_id }}</td>
+                                            <td>{{ $product->user->name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Category Name</td>
-                                            <td>{{ $product->category_id }}</td>
+                                            <td>{{ $product->category->name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Subcategory Name</td>
@@ -53,7 +69,11 @@
                                         </tr>
                                         <tr>
                                             <td>Collection Name</td>
-                                            <td>{{ $product->collection_id }}</td>
+                                            <td>
+                                                {{ $product->collection->top_title }}
+                                                {{ $product->collection->lower_title }}
+                                                <b>{{ $product->collection->strong_title }}</b>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>SKU Code</td>
@@ -61,7 +81,11 @@
                                         </tr>
                                         <tr>
                                             <td>Slug</td>
-                                            <td>{{ $product->slug }}</td>
+                                            <td>
+                                                <a href="{{ route('product.details', $product->slug) }}"
+                                                    target="_blank">{{ $product->slug }} <i
+                                                        class="fas fa-external-link-square-alt"></i></a>
+                                            </td>
                                         </tr>
 
                                         <tr>
@@ -71,59 +95,77 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
+                    </div>
+                    <div class="card card-flush my-4 py-4">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Products</h2>
+                            </div>
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0">
+                            <div class="d-flex flex-column gap-10">
+                                <!--begin::Table container-->
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table class="table align-middle gs-0 gy-4">
+                                        <!--begin::Table head-->
+                                        <thead>
+                                            <tr class="fw-bolder text-muted bg-light">
+                                                <th class="ps-4 rounded-start">SL. No.</th>
+                                                <th>Color</th>
+                                                <th>Size</th>
+                                                <th>Purchase Price</th>
+                                                <th>Selling Price</th>
+                                                <th>Offer Price</th>
+                                                <th>Quantity</th>
+                                                <th>Market Value</th>
+                                            </tr>
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody>
+                                            @forelse ($product->inventory as $inventory)
+                                                <tr>
+                                                    <td class="ps-4">{{ $loop->index + 1 }}</td>
+                                                    <td>{{ $inventory->color->name }}</td>
+                                                    <td>{{ $inventory->size->name }}</td>
+                                                    <td>{{ $inventory->purchase_price }}</td>
+                                                    <td>{{ $inventory->selling_price }}</td>
+                                                    <td>{{ $inventory->offer_price }}</td>
+                                                    <td>{{ $inventory->quantity }}</td>
+                                                    <td>{{ $inventory->quantity * $inventory->selling_price }}</td>
+                                                </tr>
+                                            @empty
+                                                <tr class="text-danger text-center">
+                                                    <td colspan="50">No Inventory Found</td>
+                                                </tr>
+                                            @endforelse
+
+                                        </tbody>
+                                        <!--end::Table body-->
+                                        <!--begin::Table head-->
+                                        <tfoot>
+                                            <tr class="fw-bolder text-muted bg-light">
+                                                <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
+                                                <th>{{ $product->inventory->sum('quantity') }}</th>
+                                                <th>-</th>
+                                            </tr>
+                                        </tfoot>
+                                        <!--end::Table head-->
+                                    </table>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Table container-->
+                            </div>
+                        </div>
+                        <!--end::Card header-->
                     </div>
                 </div>
             </div>
-
-            <!--begin::Order details-->
-            <div class="card card-flush py-4">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <div class="card-title">
-                        <h2>Products</h2>
-                    </div>
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-0">
-                    <div class="d-flex flex-column gap-10">
-                        <!--begin::Table container-->
-                        <div class="table-responsive">
-                            <!--begin::Table-->
-                            <table class="table align-middle gs-0 gy-4">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <tr class="fw-bolder text-muted bg-light">
-                                        <th class="ps-4 min-w-300px rounded-start">Product Name</th>
-                                        <th>asdas</th>
-                                        <th class="pe-4 min-w-200px text-end rounded-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody>
-                                    @foreach ($product->inventory as $inventory)
-                                    <tr>
-                                        <td>{{ $inventory->purchase_price }}</td>
-                                        <td>{{ $inventory->selling_price }}</td>
-                                        <td>{{ $inventory->offer_price }}</td>
-                                    </tr>
-                                    @endforeach
-
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
-                        </div>
-                        <!--end::Table container-->
-                    </div>
-                    {{-- {{ $products->links() }} --}}
-                </div>
-                <!--end::Card header-->
-            </div>
-            <!--end::Order details-->
         </div>
         <!--end::Aside column-->
     </div>

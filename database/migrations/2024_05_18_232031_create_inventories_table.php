@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('purchase_price', total: 8, places: 2);
             $table->decimal('selling_price', total: 8, places: 2);
             $table->decimal('offer_price', total: 8, places: 2)->nullable();
+            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
         });

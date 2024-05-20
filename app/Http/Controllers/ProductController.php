@@ -61,7 +61,7 @@ class ProductController extends Controller
             'primary_image' => 'required|image',
             'secondary_image' => 'nullable|image'
         ]);
-        $product = Product::create($request->except('_token', 'tags', 'color_id', 'size_id', 'purchase_price', 'selling_price', 'offer_price') + [
+        $product = Product::create($request->except('_token', 'tags', 'color_id', 'size_id', 'purchase_price', 'selling_price', 'offer_price', 'quantity') + [
             'slug' => Str::slug($request->name),
             'user_id' => auth()->id()
         ]);
@@ -103,7 +103,8 @@ class ProductController extends Controller
                 'size_id' => $request->size_id,
                 'purchase_price' => $request->purchase_price,
                 'selling_price' => $request->selling_price,
-                'offer_price' => $request->offer_price
+                'offer_price' => $request->offer_price,
+                'quantity' => $request->quantity
             ]);
         }
         //if initial inventory added end
