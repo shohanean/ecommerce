@@ -149,8 +149,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        return $request;
-        // return $product;
+        $product->name = $request->name;
+        $product->category_id = $request->category_id;
+        $product->collection_id = $request->collection_id;
+        $product->status = $request->status;
+        $product->sku = $request->sku;
+        $product->short_description = $request->short_description;
+        $product->long_description = $request->long_description;
+        $product->save();
+        return back();
     }
 
     /**
