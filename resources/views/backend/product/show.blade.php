@@ -101,7 +101,7 @@
                         <!--begin::Card header-->
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>Products</h2>
+                                <h2>Current Inventory of {{ $product->name }}</h2>
                             </div>
                         </div>
                         <!--end::Card header-->
@@ -128,6 +128,9 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
+                                            @php
+                                                $total_market_value = 0;
+                                            @endphp
                                             @forelse ($product->inventory as $inventory)
                                                 <tr>
                                                     <td class="ps-4">{{ $loop->index + 1 }}</td>
@@ -139,23 +142,26 @@
                                                     <td>{{ $inventory->quantity }}</td>
                                                     <td>{{ $inventory->quantity * $inventory->selling_price }}</td>
                                                 </tr>
+                                                @php
+                                                    $total_market_value +=
+                                                        $inventory->quantity * $inventory->selling_price;
+                                                @endphp
                                             @empty
                                                 <tr class="text-danger text-center">
                                                     <td colspan="50">No Inventory Found</td>
                                                 </tr>
                                             @endforelse
-
                                         </tbody>
                                         <!--end::Table body-->
-                                        <!--begin::Table head-->
-                                        <tfoot>
-                                            <tr class="fw-bolder text-muted bg-light">
-                                                <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
-                                                <th>{{ $product->inventory->sum('quantity') }}</th>
-                                                <th>-</th>
-                                            </tr>
-                                        </tfoot>
-                                        <!--end::Table head-->
+                                        @if ($product->inventory->count() != 0)
+                                            <tfoot>
+                                                <tr class="fw-bolder bg-light">
+                                                    <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
+                                                    <th>{{ $product->inventory->sum('quantity') }}</th>
+                                                    <th>{{ $total_market_value }}</th>
+                                                </tr>
+                                            </tfoot>
+                                        @endif
                                     </table>
                                     <!--end::Table-->
                                 </div>

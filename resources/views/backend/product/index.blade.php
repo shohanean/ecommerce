@@ -33,13 +33,18 @@
                     <div class="d-flex flex-column gap-10">
                         <!--begin::Table container-->
                         <div class="table-responsive">
+                            @session('success')
+                            <div class="alert alert-info">
+                                {{ $value }}
+                            </div>
+                            @endsession
                             <!--begin::Table-->
                             <table class="table align-middle gs-0 gy-4">
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bolder text-muted bg-light">
                                         <th class="ps-4 min-w-300px rounded-start">Product Name</th>
-                                        <th>asdas</th>
+                                        <th>Created At</th>
                                         <th class="pe-4 min-w-200px text-end rounded-end">Action</th>
                                     </tr>
                                 </thead>

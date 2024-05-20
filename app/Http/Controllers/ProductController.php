@@ -130,7 +130,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('backend.product.edit', compact('product'));
+        return view('backend.product.edit', [
+            'collections' => Collection::all(),
+            'categories' => Category::all(),
+            'colors' => Color::all(),
+            'sizes' => Size::all(),
+            'tags' => Tag::all(),
+            'product' => $product
+        ]);
     }
 
     /**
@@ -142,7 +149,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        return $request;
+        // return $product;
     }
 
     /**
@@ -154,6 +162,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return back();
+        return back()->with('success', $product->name . ' Deleted Successfully!');
     }
 }
