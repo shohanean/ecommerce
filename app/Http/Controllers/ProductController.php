@@ -150,6 +150,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->name = $request->name;
+        $product->slug = Str::slug($request->name);
         $product->category_id = $request->category_id;
         $product->collection_id = $request->collection_id;
         $product->status = $request->status;

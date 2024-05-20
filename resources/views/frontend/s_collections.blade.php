@@ -16,5 +16,7 @@
         </div>
     </div>
     <!-- Breadcrumb area End -->
-    {{ $products }}
+    @foreach ($products as $product)
+        @include('frontend.inc.single_product')
+    @endforeach
 @endsection

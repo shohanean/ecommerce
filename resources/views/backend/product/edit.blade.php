@@ -52,6 +52,7 @@
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                             <span class="required">Product Name</span>
+                                            <span class="badge badge-secondary">/{{ $product->slug }}</span>
                                         </label>
                                         <!--end::Label-->
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -191,7 +192,7 @@
                                         <select class="form-control @error('tags') is-invalid @enderror" id="tags_dropdown"
                                             multiple="multiple" name="tags[]">
                                             @foreach ($tags as $tag)
-                                                <option value={{ $tag->id }}>{{ $tag->name }}</option>
+                                                <option {{ ($product->product_tag->contains('tag_id', $tag->id)) ? 'selected':'' }} value={{ $tag->id }}>{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('tags')
@@ -211,6 +212,11 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <img
+                                                            src="{{ $product->primary_image }}"
+                                                            class="img-fluid rounded-top"
+                                                            alt="primary image not found"
+                                                        />
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                                             <span class="required">Primary Image</span>
@@ -226,6 +232,11 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                                        <img
+                                                            src="{{ $product->secondary_image }}"
+                                                            class="img-fluid rounded-top"
+                                                            alt="secondary image not found"
+                                                        />
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                                             Secondary Image

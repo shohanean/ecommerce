@@ -45,6 +45,7 @@
                                     <tr class="fw-bolder text-muted bg-light">
                                         <th class="ps-4 min-w-300px rounded-start">Product Name</th>
                                         <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th class="pe-4 min-w-200px text-end rounded-end">Action</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ $product->created_at->diffForHumans() }}</td>
+                                            <td>{{ $product->updated_at->diffForHumans() }}</td>
                                             <td class="text-end">
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                                     <a href="{{ route('product.show', $product->id) }}"

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Product;
+use App\Models\Contact;
 use App\Models\Tag;
 
 class FrontendController extends Controller
@@ -61,5 +62,12 @@ class FrontendController extends Controller
     function contact_us()
     {
         return view('frontend.contact_us');
+    }
+    function contact_us_post(Request $request)
+    {
+        Contact::create($request->except('_token') + [
+            'ip_address' => $request->ip()
+        ]);
+        return back()->with('success', 'Message Send Successfully!');
     }
 }

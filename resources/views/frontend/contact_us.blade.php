@@ -28,9 +28,12 @@
                 <div class="row pt--75 pt-md--50 pt-sm--30 pb--80 pb-md--60 pb-sm--35">
                     <div class="col-md-7 mb-sm--30">
                         <h2 class="heading-secondary mb--50 mb-md--35 mb-sm--20">Get in touch</h2>
-
+                        @session('success')
+                            <div class="alert alert-info">{{ $value }}</div>
+                        @endsession
                         <!-- Contact form Start Here -->
-                        <form class="form" action="mail.php" id="contact-form">
+                        <form class="form" action="{{ route('contact.us.post') }}" method="POST">
+                            @csrf
                             <div class="form__group mb--20">
                                 <input type="text" id="contact_name" name="contact_name"
                                     class="form__input form__input--2" placeholder="Your name*">

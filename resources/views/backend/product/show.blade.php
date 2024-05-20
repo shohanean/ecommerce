@@ -23,7 +23,12 @@
                 <div class="col-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h4 class="card-title">{{ $product->name }}</h4>
+                            <h4 class="card-title">
+                                {{ $product->name }}
+                                <a href="{{ route('product.edit', $product->id) }}" target="_blank">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </h4>
                         </div>
                     </div>
                     <div class="card mb-4">

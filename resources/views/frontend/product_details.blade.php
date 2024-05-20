@@ -8,9 +8,9 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop-sidebar.html">Shop Pages</a></li>
-                        <li class="current"><span>Product Configurable</span></li>
+                        <li><a href="{{ route('index') }}">Home</a></li>
+                        <li><a href="{{ route('shop') }}">Shop</a></li>
+                        <li class="current"><span>{{ $product->name }}</span></li>
                     </ul>
                 </div>
             </div>

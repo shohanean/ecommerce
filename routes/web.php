@@ -23,6 +23,7 @@ Route::get('product-details/{slug}', [FrontendController::class, 'product_detail
 Route::get('collections', [FrontendController::class, 'collections'])->name('collections');
 Route::get('collections/{slug}', [FrontendController::class, 's_collections'])->name('s.collections');
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
+Route::post('contact-us', [FrontendController::class, 'contact_us_post'])->name('contact.us.post');
 
 Auth::routes();
 
