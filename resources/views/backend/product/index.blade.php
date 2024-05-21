@@ -70,8 +70,8 @@
                                             <td>{{ $product->updated_at->diffForHumans() }}</td>
                                             <td class="text-end">
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                                    <a href="{{ route('product.show', $product->id) }}"
-                                                        class="btn btn-bg-secondary btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Add Inventory</a>
+                                                    <a href="{{ route('product.manage.inventory', $product->id) }}"
+                                                        class="btn btn-bg-success btn-color-white btn-active-color-secondary btn-sm px-4 me-2">Manage Inventory</a>
                                                     <a href="{{ route('product.show', $product->id) }}"
                                                         class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
                                                     <a href="{{ route('product.edit', $product->id) }}"

@@ -207,4 +207,10 @@ class ProductController extends Controller
         $product->delete();
         return back()->with('success', $product->name . ' Deleted Successfully!');
     }
+    public function product_manage_inventory(Product $product)
+    {
+        $colors = Color::all();
+        $sizes = Size::all();
+        return view('backend.product.manage_inventory', compact('product', 'colors', 'sizes'));
+    }
 }
