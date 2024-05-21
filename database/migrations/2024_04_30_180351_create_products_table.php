@@ -26,7 +26,9 @@ return new class extends Migration
             $table->longText('long_description');
             $table->string('status')->nullable()->comment('new, sale, hot etc');
             $table->text('primary_image');
+            $table->string('primary_image_public_id');
             $table->text('secondary_image')->nullable();
+            $table->string('secondary_image_public_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

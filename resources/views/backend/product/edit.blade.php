@@ -41,7 +41,6 @@
                                 {{ $value }}
                             </div>
                         @endsession
-
                         <form action="{{ route('product.update', $product->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @method('PATCH')
@@ -52,11 +51,16 @@
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                             <span class="required">Product Name</span>
-                                            <span class="badge badge-secondary">/{{ $product->slug }}</span>
                                         </label>
                                         <!--end::Label-->
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             placeholder="Enter Product Name" name="name" value="{{ $product->name }}">
+                                        <span class="badge badge-secondary mt-3">
+                                            Slug:
+                                            <a target="_blank"
+                                                href="{{ route('product.details', $product->slug) }}">{{ route('product.details', $product->slug) }}
+                                            </a>
+                                        </span>
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -192,7 +196,9 @@
                                         <select class="form-control @error('tags') is-invalid @enderror" id="tags_dropdown"
                                             multiple="multiple" name="tags[]">
                                             @foreach ($tags as $tag)
-                                                <option {{ ($product->product_tag->contains('tag_id', $tag->id)) ? 'selected':'' }} value={{ $tag->id }}>{{ $tag->name }}</option>
+                                                <option
+                                                    {{ $product->product_tag->contains('tag_id', $tag->id) ? 'selected' : '' }}
+                                                    value={{ $tag->id }}>{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('tags')
@@ -212,11 +218,8 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                                                        <img
-                                                            src="{{ $product->primary_image }}"
-                                                            class="img-fluid rounded-top"
-                                                            alt="primary image not found"
-                                                        />
+                                                        <img src="{{ $product->primary_image }}"
+                                                            class="img-fluid rounded-top" alt="primary image not found" />
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                                             <span class="required">Primary Image</span>
@@ -232,11 +235,9 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                                                        <img
-                                                            src="{{ $product->secondary_image }}"
+                                                        <img src="{{ $product->secondary_image }}"
                                                             class="img-fluid rounded-top"
-                                                            alt="secondary image not found"
-                                                        />
+                                                            alt="secondary image not found" />
                                                         <!--begin::Label-->
                                                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                                             Secondary Image

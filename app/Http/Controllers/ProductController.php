@@ -13,6 +13,7 @@ use App\Models\Size;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -63,7 +64,8 @@ class ProductController extends Controller
         ]);
         $product = Product::create($request->except('_token', 'tags', 'color_id', 'size_id', 'purchase_price', 'selling_price', 'offer_price', 'quantity') + [
             'slug' => Str::slug($request->name),
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
+            'primary_image_public_id' => 'primary_image_public_id',
         ]);
         foreach ($request->tags as $tag) {
             if ((int)$tag == 0) {
@@ -87,9 +89,11 @@ class ProductController extends Controller
         //image upload start
         $upload = $request->primary_image->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME') . '/product_images');
         $product->primary_image = $upload->getSecurePath();
+        $product->primary_image_public_id = $upload->getPublicId();
         if ($request->hasFile('secondary_image')) {
             $upload = $request->secondary_image->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME') . '/product_images');
             $product->secondary_image = $upload->getSecurePath();
+            $product->secondary_image_public_id = $upload->getPublicId();
         }
         $product->save();
         //image upload end
@@ -149,6 +153,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        if ($request->hasFile('primary_image')) {
+            //delete the old photo
+            Cloudinary::destroy($product->primary_image_public_id);
+            //upload the new photo start
+            $upload = $request->primary_image->storeOnCloudinary(env('CLOUDINARY_FOLDER_NAME') . '/product_images');
+            $product->primary_image = $upload->getSecurePath();
+            $product->primary_image_public_id = $upload->getPublicId();
+            //upload the new photo end
+        }
+        //Tag related activity start
+        Product_tag::where('product_id', $product->id)->forceDelete();
+        foreach ($request->tags as $tag) {
+            if ((int)$tag == 0) {
+                // conversion giving zero that means it is coming as string so a new tag
+                $tag = Tag::create([
+                    'name' => $tag
+                ]);
+
+                Product_tag::create([
+                    'product_id' => $product->id,
+                    'tag_id' => $tag->id
+                ]);
+            } else {
+                // conversion giving any value than zero that means it is already existed in the database
+                Product_tag::create([
+                    'product_id' => $product->id,
+                    'tag_id' => $tag
+                ]);
+            }
+        }
+        //Tag related activity end
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->category_id = $request->category_id;
@@ -158,7 +193,7 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->long_description = $request->long_description;
         $product->save();
-        return back();
+        return back()->with('success', 'Product Updated Successfully!');
     }
 
     /**

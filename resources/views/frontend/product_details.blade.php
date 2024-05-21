@@ -165,11 +165,11 @@
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
-                                    <select name="" class="form-select">
+                                    <select name="" class="form-select" @disabled($product->inventory->count()==0)>
                                         <option value="">-Select Color-</option>
-                                        <option value="">Red</option>
-                                        <option value="">Blue</option>
-                                        <option value="">Green</option>
+                                        @foreach ($product->inventory as $inv)
+                                            <option value="">{{ $inv->color->name }}</option>
+                                        @endforeach
                                     </select>
                                     {{-- <div class="product-color-swatch variation-wrapper">
                                         <div class="swatch-wrapper">
