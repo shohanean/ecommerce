@@ -16,7 +16,13 @@
         </div>
     </div>
     <!-- Breadcrumb area End -->
-    @foreach ($products as $product)
+    @forelse ($products as $product)
         @include('frontend.inc.single_product')
-    @endforeach
+    @empty
+        <div class="col-md-8 m-auto">
+            <div class="alert alert-danger mt-3">
+                No product is available now
+            </div>
+        </div>
+    @endforelse
 @endsection

@@ -19,7 +19,6 @@
     <div class="form d-flex flex-column flex-lg-row">
         <!--begin::Aside column-->
         <div class="w-100 flex-lg-row-auto mb-7 me-7 me-lg-10">
-            <!--begin::Order details-->
             <div class="card card-flush py-4">
                 <!--begin::Card header-->
                 <div class="card-header">
@@ -32,12 +31,12 @@
                 <div class="card-body pt-0">
                     <div class="d-flex flex-column gap-10">
                         @session('success')
-                        <div class="alert alert-success">
-                            {{ $value }}
-                        </div>
+                            <div class="alert alert-success">
+                                {{ $value }}
+                            </div>
                         @endsession
 
-                        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('product.manage.inventory.post', $product->id) }}" method="POST">
                             @csrf
                             <div class="row mb-6">
                                 <div class="col-12">
@@ -54,7 +53,8 @@
                                                         <select class="form-select" name="color_id">
                                                             <option value="">-Select One Color-</option>
                                                             @foreach ($colors as $color)
-                                                                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                                <option value="{{ $color->id }}">{{ $color->name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -69,7 +69,8 @@
                                                         <select class="form-select" name="size_id">
                                                             <option value="">-Select One Size-</option>
                                                             @foreach ($sizes as $size)
-                                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                                <option value="{{ $size->id }}">{{ $size->name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -125,7 +126,78 @@
                 </div>
                 <!--end::Card header-->
             </div>
-            <!--end::Order details-->
+            <div class="card card-flush my-4 py-4">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Current Inventory of {{ $product->name }}</h2>
+                    </div>
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <div class="d-flex flex-column gap-10">
+                        <!--begin::Table container-->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bolder text-muted bg-light">
+                                        <th class="ps-4 rounded-start">Lot No</th>
+                                        <th>Color</th>
+                                        <th>Size</th>
+                                        <th>Purchase Price</th>
+                                        <th>Selling Price</th>
+                                        <th>Offer Price</th>
+                                        <th>Quantity</th>
+                                        <th>Market Value</th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody>
+                                    @php
+                                        $total_market_value = 0;
+                                    @endphp
+                                    @forelse ($product->inventory->sortByDesc('lot_no') as $inventory)
+                                        <tr>
+                                            <td class="ps-4">{{ $inventory->lot_no }}</td>
+                                            <td>{{ $inventory->color->name }}</td>
+                                            <td>{{ $inventory->size->name }}</td>
+                                            <td>{{ $inventory->purchase_price }}</td>
+                                            <td>{{ $inventory->selling_price }}</td>
+                                            <td>{{ $inventory->offer_price }}</td>
+                                            <td>{{ $inventory->quantity }}</td>
+                                            <td>{{ $inventory->quantity * $inventory->selling_price }}</td>
+                                        </tr>
+                                        @php
+                                            $total_market_value += $inventory->quantity * $inventory->selling_price;
+                                        @endphp
+                                    @empty
+                                        <tr class="text-danger text-center">
+                                            <td colspan="50">No Inventory Found</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                                <!--end::Table body-->
+                                @if ($product->inventory->count() != 0)
+                                    <tfoot>
+                                        <tr class="fw-bolder bg-light">
+                                            <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
+                                            <th>{{ $product->inventory->sum('quantity') }}</th>
+                                            <th>{{ $total_market_value }}</th>
+                                        </tr>
+                                    </tfoot>
+                                @endif
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                        <!--end::Table container-->
+                    </div>
+                </div>
+                <!--end::Card header-->
+            </div>
         </div>
         <!--end::Aside column-->
     </div>

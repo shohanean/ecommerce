@@ -120,7 +120,7 @@
                                         <!--begin::Table head-->
                                         <thead>
                                             <tr class="fw-bolder text-muted bg-light">
-                                                <th class="ps-4 rounded-start">SL. No.</th>
+                                                <th class="ps-4 rounded-start">Lot No</th>
                                                 <th>Color</th>
                                                 <th>Size</th>
                                                 <th>Purchase Price</th>
@@ -136,9 +136,9 @@
                                             @php
                                                 $total_market_value = 0;
                                             @endphp
-                                            @forelse ($product->inventory as $inventory)
+                                            @forelse ($product->inventory->sortByDesc('lot_no') as $inventory)
                                                 <tr>
-                                                    <td class="ps-4">{{ $loop->index + 1 }}</td>
+                                                    <td class="ps-4">{{ $inventory->lot_no }}</td>
                                                     <td>{{ $inventory->color->name }}</td>
                                                     <td>{{ $inventory->size->name }}</td>
                                                     <td>{{ $inventory->purchase_price }}</td>

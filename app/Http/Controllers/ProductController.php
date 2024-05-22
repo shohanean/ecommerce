@@ -100,6 +100,11 @@ class ProductController extends Controller
 
         //if initial inventory added start
         if ($request->color_id) {
+            if (Inventory::where('product_id', $product->id)->exists()) {
+                $lot_no = Inventory::where('product_id', $product->id)->count() + 1;
+            } else {
+                $lot_no = 1;
+            }
             Inventory::create([
                 'user_id' => auth()->id(),
                 'product_id' => $product->id,
@@ -108,7 +113,8 @@ class ProductController extends Controller
                 'purchase_price' => $request->purchase_price,
                 'selling_price' => $request->selling_price,
                 'offer_price' => $request->offer_price,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'lot_no' => $lot_no
             ]);
         }
         //if initial inventory added end
@@ -212,5 +218,19 @@ class ProductController extends Controller
         $colors = Color::all();
         $sizes = Size::all();
         return view('backend.product.manage_inventory', compact('product', 'colors', 'sizes'));
+    }
+    public function product_manage_inventory_post(Request $request, Product $product)
+    {
+        if (Inventory::where('product_id', $product->id)->exists()) {
+            $lot_no = Inventory::where('product_id', $product->id)->count() + 1;
+        } else {
+            $lot_no = 1;
+        }
+        Inventory::create($request->except('_token') + [
+            'user_id' => auth()->id(),
+            'product_id' => $product->id,
+            'lot_no' => $lot_no
+        ]);
+        return back()->with('success', 'Inventory Added Successfully!');
     }
 }

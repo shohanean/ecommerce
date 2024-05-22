@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     //Collection Routes
     Route::resource('product', ProductController::class);
     Route::get('product/manage/inventory/{product}', [ProductController::class, 'product_manage_inventory'])->name('product.manage.inventory');
+    Route::post('product/manage/inventory/{product}', [ProductController::class, 'product_manage_inventory_post'])->name('product.manage.inventory.post');
 
     //Profile Routes
     Route::resource('profile', ProfileController::class);

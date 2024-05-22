@@ -16,6 +16,6 @@ class Inventory extends Model
     }
     function size()
     {
-        return $this->hasOne(Size::class, 'id', 'color_id');
+        return $this->hasOne(Size::class, 'id', 'size_id');
     }
 }
