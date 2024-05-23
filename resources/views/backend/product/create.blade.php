@@ -63,7 +63,7 @@
                                             <span class="required">Category Name</span>
                                         </label>
                                         <!--end::Label-->
-                                        <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
+                                        <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="category_dropdown">
                                             <option value="">-Select Category-</option>
                                             @foreach ($categories as $category)
                                                 <option {{ (old('category_id') == $category->id) ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
@@ -337,6 +337,24 @@
                     "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | print preview"
                 ],
                 plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+            $('#category_dropdown').change(function(){
+                var selectedValue = $(this).val();
+                alert('asdasdasd');
+                alert("{{ route('get.subcategory', "selectedValue") }}");
+                // .ajax({
+                //     url: "{{ route('get.subcategory', '"+selectedValue+"') }}",
+                //     type: 'GET',
+                //     success: function(response){
+                //         alert(response);
+                //         // var options = '<option value="">Select Option</option>';
+                //         // $.each(response, function(index, option){
+                //         //     options += '<option value="' + option.id + '">' + option.name + '</option>';
+                //         // });
+                //         // $('#dependent-dropdown').html(options);
+                //     }
+                // });
             });
         });
     </script>

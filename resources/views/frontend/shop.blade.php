@@ -70,9 +70,13 @@
                         </div>
                         <div class="shop-products">
                             <div class="row grid-space-20 xxl-block-grid-4">
-                                @foreach ($products as $product)
+                                @forelse ($products as $product)
                                     @include('frontend.inc.single_product')
-                                @endforeach
+                                @empty
+                                <div class="alert alert-warning">
+                                    No product to show
+                                </div>
+                                @endforelse
                             </div>
                         </div>
                         {{ $products->links('frontend.inc.pagination') }}
