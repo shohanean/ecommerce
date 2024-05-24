@@ -1205,8 +1205,7 @@
 
     <!-- REVOLUTION ACTIVE JS FILES -->
     <script src="{{ asset('frontend_assets') }}/js/revoulation.js"></script>
-
-
+    @yield('footer_scripts')
 </body>
 
 </html>

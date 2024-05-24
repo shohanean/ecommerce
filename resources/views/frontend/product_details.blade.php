@@ -150,6 +150,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product->name }}</h3>
+                            <img width="200" src="{{ $product->primary_image }}" alt="not found">
                             <span class="product-stock in-stock float-right">
                                 <i class="dl-icon-check-circle1"></i>
                                 in stock
@@ -165,20 +166,22 @@
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
-                                    <select name="" class="form-select" @disabled($product->inventory->count()==0)>
+                                    <select name="" id="color_dropdown" class="form-select" @disabled($product->inventory->count()==0)>
                                         <option value="">-Select Color-</option>
-                                        @foreach ($product->inventory as $inv)
-                                            <option value="">{{ $inv->color->name }}</option>
+                                        @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
+                                            <option value="{{ $inv->color_id }}">{{ $inv->color->name }}</option>
                                         @endforeach
                                     </select>
-                                    {{-- <div class="product-color-swatch variation-wrapper">
+                                    <div class="product-color-swatch variation-wrapper">
+                                        @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
                                         <div class="swatch-wrapper">
-                                            <a class="product-color-swatch-btn variation-btn blue" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="Blue">
-                                                <span class="product-color-swatch-label">Blue</span>
+                                            <a style="background-color: {{ $inv->color->code }}" class="product-color-swatch-btn variation-btn" data-bs-toggle="tooltip"
+                                                data-bs-placement="left" title="{{ $inv->color->name }}">
+                                                <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
                                             </a>
                                         </div>
-                                        <div class="swatch-wrapper">
+                                        @endforeach
+                                        {{-- <div class="swatch-wrapper">
                                             <a class="product-color-swatch-btn variation-btn green" data-bs-toggle="tooltip"
                                                 data-bs-placement="left" title="Green">
                                                 <span class="product-color-swatch-label">Green</span>
@@ -201,8 +204,8 @@
                                                 data-bs-toggle="tooltip" data-bs-placement="left" title="White">
                                                 <span class="product-color-swatch-label">white</span>
                                             </a>
-                                        </div>
-                                    </div> --}}
+                                        </div> --}}
+                                    </div>
                                 </div>
                                 <div class="product-size-variations">
                                     <p class="swatch-label">Size: <strong class="swatch-label"></strong></p>
@@ -880,4 +883,34 @@
         </div>
     </div>
     <!-- Main Content Wrapper Start -->
+@endsection
+@section('footer_scripts')
+<script>
+    $(document).ready(function() {
+        $('#color_dropdown').change(function(){
+            var selectedValue = $(this).val();
+                $.ajax({
+                    url: "{{ url('get/size') }}/" + selectedValue,
+                    type: 'GET',
+                    success: function(response){
+                        alert("ok");
+                        // if (response.length == 0) {
+                        //     var options = '<option value="">There is no subcategory under this category</option>';
+                        // } else {
+                        //     var options = '<option value="">-Select Subcategory-</option>';
+                        // }
+                        // $.each(response, function(index, option){
+                        //     options += '<option value="' + option.id + '">' + option.name + '</option>';
+                        // });
+                        // if (response.length == 0) {
+                        //     $('#subcategory_dropdown').attr('disabled', true);
+                        // } else {
+                        //     $('#subcategory_dropdown').attr('disabled', false);
+                        // }
+                        // $('#subcategory_dropdown').html(options);
+                    }
+                });
+        });
+    });
+</script>
 @endsection

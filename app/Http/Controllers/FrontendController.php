@@ -70,4 +70,8 @@ class FrontendController extends Controller
         ]);
         return back()->with('success', 'Message Send Successfully!');
     }
+    function get_size()
+    {
+        echo "asdasdasd";
+    }
 }

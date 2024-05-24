@@ -150,6 +150,7 @@
                                         <th>Purchase Price</th>
                                         <th>Selling Price</th>
                                         <th>Offer Price</th>
+                                        <th>Sold Quantity</th>
                                         <th>Quantity</th>
                                         <th>Market Value</th>
                                     </tr>
@@ -162,12 +163,22 @@
                                     @endphp
                                     @forelse ($product->inventory->sortByDesc('lot_no') as $inventory)
                                         <tr>
-                                            <td class="ps-4">{{ $inventory->lot_no }}</td>
+                                            <td class="ps-4">
+                                                @if ($inventory->quantity == $inventory->sold_quantity)
+                                                    <i class="fa fa-exclamation-circle text-danger" title="Stock Out"></i>
+                                                @else
+                                                    <i>&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                                                @endif
+                                                <span title="id#{{ $inventory->id }}">
+                                                    {{ $inventory->lot_no }}
+                                                </span>
+                                            </td>
                                             <td>{{ $inventory->color->name }}</td>
                                             <td>{{ $inventory->size->name }}</td>
                                             <td>{{ $inventory->purchase_price }}</td>
                                             <td>{{ $inventory->selling_price }}</td>
                                             <td>{{ $inventory->offer_price }}</td>
+                                            <td>{{ $inventory->sold_quantity }}</td>
                                             <td>{{ $inventory->quantity }}</td>
                                             <td>{{ $inventory->quantity * $inventory->selling_price }}</td>
                                         </tr>
@@ -185,6 +196,7 @@
                                     <tfoot>
                                         <tr class="fw-bolder bg-light">
                                             <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
+                                            <th>{{ $product->inventory->sum('sold_quantity') }}</th>
                                             <th>{{ $product->inventory->sum('quantity') }}</th>
                                             <th>{{ $total_market_value }}</th>
                                         </tr>
