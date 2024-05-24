@@ -15,6 +15,10 @@ class Product extends Model
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+    function subcategory()
+    {
+        return $this->hasOne(Subcategory::class, 'id', 'subcategory_id');
+    }
     function collection()
     {
         return $this->hasOne(Collection::class, 'id', 'collection_id');

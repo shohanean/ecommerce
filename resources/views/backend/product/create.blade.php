@@ -81,10 +81,8 @@
                                             <span>Subcategory Name</span>
                                         </label>
                                         <!--end::Label-->
-                                        <select class="form-select" name="subcategory_id">
-                                            <option value="">-Select Subcategory-</option>
-                                            <option value="">asdasd</option>
-                                            <option value="">gorge</option>
+                                        <select class="form-select" name="subcategory_id" id="subcategory_dropdown" disabled>
+                                            <option value="">Select Category First</option>
                                         </select>
                                     </div>
                                 </div>
@@ -341,20 +339,26 @@
 
             $('#category_dropdown').change(function(){
                 var selectedValue = $(this).val();
-                alert('asdasdasd');
-                alert("{{ route('get.subcategory', "selectedValue") }}");
-                // .ajax({
-                //     url: "{{ route('get.subcategory', '"+selectedValue+"') }}",
-                //     type: 'GET',
-                //     success: function(response){
-                //         alert(response);
-                //         // var options = '<option value="">Select Option</option>';
-                //         // $.each(response, function(index, option){
-                //         //     options += '<option value="' + option.id + '">' + option.name + '</option>';
-                //         // });
-                //         // $('#dependent-dropdown').html(options);
-                //     }
-                // });
+                $.ajax({
+                    url: "{{ url('get/subcategory') }}/" + selectedValue,
+                    type: 'GET',
+                    success: function(response){
+                        if (response.length == 0) {
+                            var options = '<option value="">There is no subcategory under this category</option>';
+                        } else {
+                            var options = '<option value="">-Select Subcategory-</option>';
+                        }
+                        $.each(response, function(index, option){
+                            options += '<option value="' + option.id + '">' + option.name + '</option>';
+                        });
+                        if (response.length == 0) {
+                            $('#subcategory_dropdown').attr('disabled', true);
+                        } else {
+                            $('#subcategory_dropdown').attr('disabled', false);
+                        }
+                        $('#subcategory_dropdown').html(options);
+                    }
+                });
             });
         });
     </script>

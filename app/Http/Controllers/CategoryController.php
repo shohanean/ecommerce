@@ -118,4 +118,9 @@ class CategoryController extends Controller
     {
         //
     }
+    public function get_subcategory($category_id)
+    {
+        return Subcategory::where('category_id', $category_id)->get();
+        return "how t $category_id";
+    }
 }

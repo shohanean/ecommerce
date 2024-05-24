@@ -70,7 +70,7 @@
                                         </tr>
                                         <tr>
                                             <td>Subcategory Name</td>
-                                            <td>{{ $product->subcategory_id }}</td>
+                                            <td>{{ $product->subcategory->name ?? "No Subcategory Selected" }}</td>
                                         </tr>
                                         <tr>
                                             <td>Collection Name</td>

@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
     //Category Routes
     Route::resource('category', CategoryController::class);
     Route::post('subcategory/{category_id}', [CategoryController::class, 'subcategory_store'])->name('subcategory.store');
-    Route::post('get/subcategory/{category_id}', [CategoryController::class, 'get_subcategory'])->name('get.subcategory');
+    Route::get('get/subcategory/{category_id}', [CategoryController::class, 'get_subcategory'])->name('get.subcategory');
 
     //Collection Routes
     Route::resource('product', ProductController::class);
