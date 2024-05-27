@@ -8,7 +8,7 @@
     @includeIf('parts.toolbar', [
         'links' => [
             'home' => 'home',
-            'Add New Product' => 'product.create',
+            'Add Inventory' => '',
         ],
         'right_btn' => ['All Products', 'product.index'],
     ])
@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-info">Add New Product</button>
+                            <button class="btn btn-info">Add Inventory</button>
                         </form>
                     </div>
                 </div>
@@ -150,8 +150,8 @@
                                         <th>Purchase Price</th>
                                         <th>Selling Price</th>
                                         <th>Offer Price</th>
-                                        <th>Sold Quantity</th>
                                         <th>Quantity</th>
+                                        <th>Sold Quantity</th>
                                         <th>Market Value</th>
                                     </tr>
                                 </thead>
@@ -178,8 +178,8 @@
                                             <td>{{ $inventory->purchase_price }}</td>
                                             <td>{{ $inventory->selling_price }}</td>
                                             <td>{{ $inventory->offer_price }}</td>
-                                            <td>{{ $inventory->sold_quantity }}</td>
                                             <td>{{ $inventory->quantity }}</td>
+                                            <td>{{ $inventory->sold_quantity }}</td>
                                             <td>{{ $inventory->quantity * $inventory->selling_price }}</td>
                                         </tr>
                                         @php
@@ -196,8 +196,8 @@
                                     <tfoot>
                                         <tr class="fw-bolder bg-light">
                                             <th class="ps-4 rounded-start text-center" colspan="6">Total</th>
-                                            <th>{{ $product->inventory->sum('sold_quantity') }}</th>
                                             <th>{{ $product->inventory->sum('quantity') }}</th>
+                                            <th>{{ $product->inventory->sum('sold_quantity') }}</th>
                                             <th>{{ $total_market_value }}</th>
                                         </tr>
                                     </tfoot>

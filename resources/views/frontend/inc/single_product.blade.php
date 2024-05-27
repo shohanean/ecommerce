@@ -3,9 +3,7 @@
         <div class="product-inner">
             <figure class="product-image">
                 <div class="product-image--holder">
-                    <a href="product-details.html">
-
-
+                    <a href="{{ route('product.details', $product->slug) }}">
                         <img src="{{ $product->primary_image }}" alt="Product Image" class="primary-image">
                         @isset($product->secondary_image)
                             <img src="{{ $product->secondary_image }}" alt="Product Image" class="secondary-image">
@@ -39,13 +37,12 @@
                 @isset($product->status)
                     <span class="product-badge {{ $product->status }}">{{ $product->status }}</span>
                 @endisset
-
             </figure>
             <div class="product-info text-center">
                 <h3 class="product-title">
                     <a href="{{ route('product.details', $product->slug) }}">{{ $product->name }}</a>
                 </h3>
-                <div class="product-rating">
+                {{-- <div class="product-rating">
                     <span>
                         <i class="dl-icon-star rated"></i>
                         <i class="dl-icon-star rated"></i>
@@ -53,12 +50,24 @@
                         <i class="dl-icon-star"></i>
                         <i class="dl-icon-star"></i>
                     </span>
-                </div>
+                </div> --}}
                 <span class="product-price-wrapper">
-                    <span class="money">$49.00</span>
-                    <span class="product-price-old">
-                        <span class="money">$60.00</span>
-                    </span>
+                    @php
+                        $price = $product->inventory->firstWhere(
+                            'selling_price',
+                            $product->inventory->min('selling_price'),
+                        );
+                    @endphp
+                    @if ($price->offer_price)
+                        <span class="money">
+                            ৳{{ $price->offer_price }}
+                        </span>
+                        <s>৳{{ $price->selling_price }}</s>
+                    @else
+                        <span class="money">
+                            ৳{{ $price->selling_price }}
+                        </span>
+                    @endif
                 </span>
             </div>
         </div>

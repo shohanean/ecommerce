@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Product;
 use App\Models\Contact;
+use App\Models\Inventory;
 use App\Models\Tag;
 
 class FrontendController extends Controller
@@ -70,8 +71,13 @@ class FrontendController extends Controller
         ]);
         return back()->with('success', 'Message Send Successfully!');
     }
-    function get_size()
+    function get_size($product_id, $color_id)
     {
-        echo "asdasdasd";
+        // echo "Product ID We get " . $product_id;
+        // echo "Color ID We get " . $color_id;
+        echo Inventory::where([
+            'product_id' => $product_id,
+            'color_id' => $color_id,
+        ])->get();
     }
 }

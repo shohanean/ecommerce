@@ -166,20 +166,24 @@
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
-                                    <select name="" id="color_dropdown" class="form-select" @disabled($product->inventory->count()==0)>
+                                    {{-- <select name="" id="color_dropdown" class="form-select"
+                                        @disabled($product->inventory->count() == 0)>
                                         <option value="">-Select Color-</option>
                                         @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
                                             <option value="{{ $inv->color_id }}">{{ $inv->color->name }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                     <div class="product-color-swatch variation-wrapper">
                                         @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
-                                        <div class="swatch-wrapper">
-                                            <a style="background-color: {{ $inv->color->code }}" class="product-color-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="{{ $inv->color->name }}">
-                                                <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
-                                            </a>
-                                        </div>
+                                            <div class="swatch-wrapper">
+                                                <a data-id="{{ $inv->color->id }}"
+                                                    style="background-color: {{ $inv->color->code }}"
+                                                    class="product-color-swatch-btn variation-btn color_palette"
+                                                    data-bs-toggle="tooltip" data-bs-placement="left"
+                                                    title="{{ $inv->color->name }}">
+                                                    <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
+                                                </a>
+                                            </div>
                                         @endforeach
                                         {{-- <div class="swatch-wrapper">
                                             <a class="product-color-swatch-btn variation-btn green" data-bs-toggle="tooltip"
@@ -885,32 +889,30 @@
     <!-- Main Content Wrapper Start -->
 @endsection
 @section('footer_scripts')
-<script>
-    $(document).ready(function() {
-        $('#color_dropdown').change(function(){
-            var selectedValue = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('.color_palette').click(function() {
+                var color_id = $(this).attr('data-id');
+                var product_id = "{{ $product->id }}";
                 $.ajax({
-                    url: "{{ url('get/size') }}/" + selectedValue,
+                    url: "{{ url('get/size') }}/" + product_id + "/" + color_id,
                     type: 'GET',
-                    success: function(response){
-                        alert("ok");
+                    success: function(response) {
+                        alert(response);
                         // if (response.length == 0) {
                         //     var options = '<option value="">There is no subcategory under this category</option>';
                         // } else {
                         //     var options = '<option value="">-Select Subcategory-</option>';
                         // }
-                        // $.each(response, function(index, option){
-                        //     options += '<option value="' + option.id + '">' + option.name + '</option>';
+                        // var shohan = "hehehe";
+                        // $.each(response, function(index, option) {
+                        //     // options += '<option value="' + option.id + '">' + option.name + '</option>';
+                        //     shohan += "5555";
                         // });
-                        // if (response.length == 0) {
-                        //     $('#subcategory_dropdown').attr('disabled', true);
-                        // } else {
-                        //     $('#subcategory_dropdown').attr('disabled', false);
-                        // }
-                        // $('#subcategory_dropdown').html(options);
+                        // alert(shohan);
                     }
                 });
+            });
         });
-    });
-</script>
+    </script>
 @endsection
