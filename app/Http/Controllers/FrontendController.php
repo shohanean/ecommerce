@@ -73,11 +73,15 @@ class FrontendController extends Controller
     }
     function get_size($product_id, $color_id)
     {
-        // echo "Product ID We get " . $product_id;
-        // echo "Color ID We get " . $color_id;
-        echo Inventory::where([
+        $inventories = Inventory::where([
             'product_id' => $product_id,
             'color_id' => $color_id,
         ])->get();
+        $size_variation = "";
+        foreach ($inventories as $inventory) {
+            // $size_variation .= $inventory->size->name;
+            $size_variation .= '<div class="swatch-wrapper"><a class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+        }
+        echo $size_variation;
     }
 }

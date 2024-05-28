@@ -166,87 +166,25 @@
                             <form action="#" class="variation-form mb--35">
                                 <div class="product-color-variations mb--20">
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
-                                    {{-- <select name="" id="color_dropdown" class="form-select"
-                                        @disabled($product->inventory->count() == 0)>
-                                        <option value="">-Select Color-</option>
-                                        @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
-                                            <option value="{{ $inv->color_id }}">{{ $inv->color->name }}</option>
-                                        @endforeach
-                                    </select> --}}
                                     <div class="product-color-swatch variation-wrapper">
                                         @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
                                             <div class="swatch-wrapper">
                                                 <a data-id="{{ $inv->color->id }}"
                                                     style="background-color: {{ $inv->color->code }}"
-                                                    class="product-color-swatch-btn variation-btn color_palette"
-                                                    data-bs-toggle="tooltip" data-bs-placement="left"
-                                                    title="{{ $inv->color->name }}">
+                                                    class="product-color-swatch-btn color_palette" data-bs-toggle="tooltip"
+                                                    data-bs-placement="left" title="{{ $inv->color->name }}">
                                                     <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
                                                 </a>
                                             </div>
                                         @endforeach
-                                        {{-- <div class="swatch-wrapper">
-                                            <a class="product-color-swatch-btn variation-btn green" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="Green">
-                                                <span class="product-color-swatch-label">Green</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-color-swatch-btn variation-btn pink"
-                                                data-bs-toggle="tooltip" data-bs-placement="left" title="Pink">
-                                                <span class="product-color-swatch-label">Pink</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-color-swatch-btn variation-btn red" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="Red">
-                                                <span class="product-color-swatch-label">Red</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-color-swatch-btn variation-btn white"
-                                                data-bs-toggle="tooltip" data-bs-placement="left" title="White">
-                                                <span class="product-color-swatch-label">white</span>
-                                            </a>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="product-size-variations">
                                     <p class="swatch-label">Size: <strong class="swatch-label"></strong></p>
-                                    <div class="product-size-swatch variation-wrapper">
-                                        <div class="swatch-wrapper">
-                                            <a class="product-size-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="L">
-                                                <span class="product-size-swatch-label">L</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-size-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="M">
-                                                <span class="product-size-swatch-label">M</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-size-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="S">
-                                                <span class="product-size-swatch-label">S</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-size-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="XL">
-                                                <span class="product-size-swatch-label">XL</span>
-                                            </a>
-                                        </div>
-                                        <div class="swatch-wrapper">
-                                            <a class="product-size-swatch-btn variation-btn" data-bs-toggle="tooltip"
-                                                data-bs-placement="left" title="XXL">
-                                                <span class="product-size-swatch-label">XXL</span>
-                                            </a>
-                                        </div>
+                                    <div class="product-size-swatch variation-wrapper" id="size_variation">
+                                        Choose color first
                                     </div>
                                 </div>
-                                <a href="#" class="reset_variations">Clear</a>
                             </form>
 
                             <form action="#" class="form--action mb--30 mb-sm--20">
@@ -898,18 +836,7 @@
                     url: "{{ url('get/size') }}/" + product_id + "/" + color_id,
                     type: 'GET',
                     success: function(response) {
-                        alert(response);
-                        // if (response.length == 0) {
-                        //     var options = '<option value="">There is no subcategory under this category</option>';
-                        // } else {
-                        //     var options = '<option value="">-Select Subcategory-</option>';
-                        // }
-                        // var shohan = "hehehe";
-                        // $.each(response, function(index, option) {
-                        //     // options += '<option value="' + option.id + '">' + option.name + '</option>';
-                        //     shohan += "5555";
-                        // });
-                        // alert(shohan);
+                        $('#size_variation').html(response);
                     }
                 });
             });

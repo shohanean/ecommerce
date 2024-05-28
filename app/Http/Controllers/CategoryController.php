@@ -51,7 +51,8 @@ class CategoryController extends Controller
         return back()->with('success', 'Category Added Successfully!');
     }
 
-    public function subcategory_store(Request $request, $category_id){
+    public function subcategory_store(Request $request, $category_id)
+    {
         // This validation will not work because of same name, we have to custom
         // $request->validate([
         //     'name' => 'required|unique:subcategories,name'
@@ -59,7 +60,7 @@ class CategoryController extends Controller
         Subcategory::create($request->except('_token') + [
             'user_id' => auth()->id(),
             'category_id' => $category_id,
-            'slug' => Str::slug($request->name).$category_id
+            'slug' => Str::slug($request->name) . $category_id
         ]);
         return back()->with('s_success', 'Subcategory Added Successfully!');
     }
@@ -98,7 +99,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|unique:categories,name,'.$category->id,
+            'name' => 'required|unique:categories,name,' . $category->id,
             'description' => 'nullable'
         ]);
         $category->name = $request->name;
@@ -121,6 +122,5 @@ class CategoryController extends Controller
     public function get_subcategory($category_id)
     {
         return Subcategory::where('category_id', $category_id)->get();
-        return "how t $category_id";
     }
 }
