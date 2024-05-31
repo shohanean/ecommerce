@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Models\Collection;
 use App\Models\Product;
 use App\Models\Contact;
@@ -23,11 +24,13 @@ class FrontendController extends Controller
     }
     function s_category($slug, $sub_slug="")
     {
-        if ($sub_slug) {
-            return "You choose sub category";
-        }
         $category = Category::where('slug', $slug)->firstOrFail();
-        $products = Product::where('category_id', $category->id)->get();
+        if ($sub_slug) {
+            $subcategory = Subcategory::where('slug', $sub_slug)->first();
+            $products = Product::where('subcategory_id', $subcategory->id)->get();
+        }else{
+            $products = Product::where('category_id', $category->id)->get();
+        }
         return view('frontend.s_category', compact('category', 'products'));
     }
     function product_details($slug)

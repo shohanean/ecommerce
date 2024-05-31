@@ -21,7 +21,7 @@ class Product extends Model
     }
     function collection()
     {
-        return $this->hasOne(Collection::class, 'id', 'collection_id');
+        return $this->hasOne(Collection::class, 'id', 'collection_id')->withTrashed();
     }
     function user()
     {

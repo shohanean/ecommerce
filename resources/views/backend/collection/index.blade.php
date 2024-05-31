@@ -44,7 +44,7 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    @foreach ($collections as $collection)
+                                    @forelse ($collections as $collection)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
@@ -61,9 +61,16 @@
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a> --}}
                                                 <a href="{{ route('collection.edit', $collection->id) }}"
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                                <form action="{{ route('collection.destroy', $collection->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                    <tr><td colspan="2" class="text-center text-danger">No collection to show</td></tr>
+                                    @endforelse
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
