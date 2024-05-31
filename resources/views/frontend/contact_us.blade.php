@@ -1,5 +1,9 @@
 @extends('layouts.frontend')
 
+@section('name')
+Contact Us
+@endsection
+
 @section('contact.us')
     active
 @endsection

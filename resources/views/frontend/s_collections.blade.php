@@ -16,13 +16,16 @@
         </div>
     </div>
     <!-- Breadcrumb area End -->
-    @forelse ($products as $product)
-        @include('frontend.inc.single_product')
-    @empty
-        <div class="col-md-8 m-auto">
-            <div class="alert alert-danger mt-3">
-                No product is available now
+    <div class="row">
+        @forelse ($products as $product)
+            @include('frontend.inc.single_product')
+        @empty
+            <div class="col-md-8 m-auto">
+                <div class="alert alert-danger mt-3">
+                    No product is available now
+                </div>
             </div>
-        </div>
-    @endforelse
+        @endforelse
+    </div>
+
 @endsection

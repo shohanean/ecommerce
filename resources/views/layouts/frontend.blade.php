@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="{{ env('PROJECT_FAVICON') }}" type="image/x-icon">
 
     <!-- Title -->
-    <title>{{ env('APP_NAME') }} - {{ env('APP_DESCRIPTION') }}</title>
+    <title>@yield('name', env('APP_NAME')) - @yield('description', env('APP_DESCRIPTION'))</title>
 
     <!-- ************************* CSS Files ************************* -->
 
@@ -70,7 +70,7 @@
                                             </a>
                                         </li>
                                         <li class="mainmenu__item menu-item-has-children has-children">
-                                            <a href="blog.html" class="mainmenu__link">
+                                            <a href="{{ route('all.categories') }}" class="mainmenu__link">
                                                 <span class="mm-text">Category</span>
                                             </a>
                                             <ul class="sub-menu">
@@ -83,7 +83,7 @@
                                                             <ul class="sub-menu">
                                                                 @foreach ($category->subcategory as $subcategory)
                                                                     <li>
-                                                                        <a href="single-post.html">
+                                                                        <a href="{{ route('s.category', ['slug' => $category->slug, 'sub_slug' => $subcategory->slug]) }}">
                                                                             <span class="mm-text">{{ $subcategory->name }}</span>
                                                                         </a>
                                                                     </li>

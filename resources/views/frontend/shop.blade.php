@@ -89,7 +89,7 @@
                                 <ul class="prouduct-categories product-widget__list">
                                     @foreach (categories() as $category)
                                         <li>
-                                            <a href="">{{ $category->name }}</a>
+                                            <a href="{{ route('s.category', $category->slug) }}">{{ $category->name }}</a>
                                             <span class="count">({{ $category->product_count($category->id) }})</span>
                                         </li>
                                     @endforeach

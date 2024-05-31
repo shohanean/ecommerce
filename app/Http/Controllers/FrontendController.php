@@ -17,8 +17,15 @@ class FrontendController extends Controller
         $products = Product::latest()->take(5)->get();
         return view('frontend.index', compact('products'));
     }
-    function s_category($slug)
+    function all_categories()
     {
+        return "under cons";
+    }
+    function s_category($slug, $sub_slug="")
+    {
+        if ($sub_slug) {
+            return "You choose sub category";
+        }
         $category = Category::where('slug', $slug)->firstOrFail();
         $products = Product::where('category_id', $category->id)->get();
         return view('frontend.s_category', compact('category', 'products'));
@@ -80,7 +87,9 @@ class FrontendController extends Controller
         $size_variation = "";
         foreach ($inventories as $inventory) {
             // $size_variation .= $inventory->size->name;
-            $size_variation .= '<div class="swatch-wrapper"><a class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+            if ($inventory->quantity != $inventory->sold_quantity) {
+                $size_variation .= '<div class="swatch-wrapper"><a class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+            }
         }
         echo $size_variation;
     }

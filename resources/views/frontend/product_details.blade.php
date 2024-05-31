@@ -1,8 +1,10 @@
 @extends('layouts.frontend')
 
+@section('description')
+{{ $product->name }}
+@endsection
 @section('content')
     <!-- Breadcrumb area Start -->
-
     <div class="breadcrumb-area pt--70 pt-md--25">
         <div class="container-fluid">
             <div class="row">
@@ -70,7 +72,7 @@
                                                 }
                                             ]'>
                                             <figure class="product-gallery__thumb--single">
-                                                <img src="{{ asset('frontend_assets') }}/img/products/prod-19-1-2.jpg"
+                                                <img src="{{ $product->primary_image }}"
                                                     alt="Products">
                                             </figure>
                                             <figure class="product-gallery__thumb--single">
@@ -100,7 +102,7 @@
                                                     "asNavFor": ".nav-slider"
                                                 }'>
                                                 <figure class="product-gallery__image zoom">
-                                                    <img src="{{ asset('frontend_assets') }}/img/products/prod-19-1-big.jpg"
+                                                    <img src="{{ $product->primary_image }}"
                                                         alt="Product">
                                                 </figure>
                                                 <figure class="product-gallery__image zoom">
@@ -150,7 +152,6 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product->name }}</h3>
-                            <img width="200" src="{{ $product->primary_image }}" alt="not found">
                             <span class="product-stock in-stock float-right">
                                 <i class="dl-icon-check-circle1"></i>
                                 in stock
@@ -214,6 +215,13 @@
                                         <a href="{{ route('s.category', $product->category->slug) }}" target="_blank">
                                             {{ $product->category->name }}
                                         </a>
+                                        @isset($product->subcategory)
+                                        >
+                                        <a href="{{ route('s.category', ['slug' => $product->category->slug, 'sub_slug' => $product->subcategory->slug]) }}" target="_blank">
+                                            {{ $product->subcategory->name }}
+                                        </a>
+                                        @endisset
+
                                     </span>
                                     <div class="tagcloud">
                                         Tags:

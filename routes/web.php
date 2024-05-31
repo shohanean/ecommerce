@@ -18,7 +18,8 @@ use App\Http\Controllers\{FrontendController, HomeController, SocialController, 
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
-Route::get('s_category/{slug}', [FrontendController::class, 's_category'])->name('s.category');
+Route::get('all/categories', [FrontendController::class, 'all_categories'])->name('all.categories');
+Route::get('s_category/{slug}/{sub_slug?}', [FrontendController::class, 's_category'])->name('s.category');
 Route::get('product-details/{slug}', [FrontendController::class, 'product_details'])->name('product.details');
 Route::get('get/size/{product_id}/{color_id}', [FrontendController::class, 'get_size'])->name('get.size');
 Route::get('collections', [FrontendController::class, 'collections'])->name('collections');
