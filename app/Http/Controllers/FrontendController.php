@@ -20,7 +20,8 @@ class FrontendController extends Controller
     }
     function all_categories()
     {
-        return "under cons";
+        $categories = Category::all();
+        return view('frontend.all_categories', compact('categories'));
     }
     function s_category($slug, $sub_slug="")
     {
@@ -36,7 +37,8 @@ class FrontendController extends Controller
     function product_details($slug)
     {
         $product = Product::with(['category', 'product_tag'])->where('slug', $slug)->firstOrFail();
-        return view('frontend.product_details', compact('product'));
+        $related_products = Product::where('id', '!=', $product->id)->where('category_id', $product->category->id)->get();
+        return view('frontend.product_details', compact('product', 'related_products'));
     }
     function shop(Request $request, $per_page = 10)
     {

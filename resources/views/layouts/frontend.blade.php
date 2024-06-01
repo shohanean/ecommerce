@@ -69,7 +69,7 @@
                                                 <span class="mm-text">Home</span>
                                             </a>
                                         </li>
-                                        <li class="mainmenu__item menu-item-has-children has-children">
+                                        <li class="mainmenu__item menu-item-has-children has-children @yield('category')">
                                             <a href="{{ route('all.categories') }}" class="mainmenu__link">
                                                 <span class="mm-text">Category</span>
                                             </a>
