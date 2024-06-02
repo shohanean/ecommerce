@@ -23,7 +23,12 @@
                 <!--begin::Card header-->
                 <div class="card-header">
                     <div class="card-title">
-                        <h2>Add Inventory - {{ $product->name }}</h2>
+                        <h2>
+                            Add Inventory - {{ $product->name }}
+                            <a href="{{ route('product.details', $product->slug) }}" target="_blank">
+                                <i class="fas fa-external-link-square-alt"></i>
+                            </a>
+                        </h2>
                     </div>
                 </div>
                 <!--end::Card header-->

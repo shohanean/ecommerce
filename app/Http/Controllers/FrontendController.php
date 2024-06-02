@@ -23,13 +23,13 @@ class FrontendController extends Controller
         $categories = Category::all();
         return view('frontend.all_categories', compact('categories'));
     }
-    function s_category($slug, $sub_slug="")
+    function s_category($slug, $sub_slug = "")
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         if ($sub_slug) {
             $subcategory = Subcategory::where('slug', $sub_slug)->first();
             $products = Product::where('subcategory_id', $subcategory->id)->get();
-        }else{
+        } else {
             $products = Product::where('category_id', $category->id)->get();
         }
         return view('frontend.s_category', compact('category', 'products'));

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('description')
-{{ $product->name }}
+    {{ $product->name }}
 @endsection
 @section('content')
     <!-- Breadcrumb area Start -->
@@ -72,8 +72,7 @@
                                                 }
                                             ]'>
                                             <figure class="product-gallery__thumb--single">
-                                                <img src="{{ $product->primary_image }}"
-                                                    alt="Products">
+                                                <img src="{{ $product->primary_image }}" alt="Products">
                                             </figure>
                                             <figure class="product-gallery__thumb--single">
                                                 <img src="{{ asset('frontend_assets') }}/img/products/prod-19-2-2.jpg"
@@ -102,8 +101,7 @@
                                                     "asNavFor": ".nav-slider"
                                                 }'>
                                                 <figure class="product-gallery__image zoom">
-                                                    <img src="{{ $product->primary_image }}"
-                                                        alt="Product">
+                                                    <img src="{{ $product->primary_image }}" alt="Product">
                                                 </figure>
                                                 <figure class="product-gallery__image zoom">
                                                     <img src="{{ asset('frontend_assets') }}/img/products/prod-19-2-big.jpg"
@@ -216,10 +214,11 @@
                                             {{ $product->category->name }}
                                         </a>
                                         @isset($product->subcategory)
-                                        >
-                                        <a href="{{ route('s.category', ['slug' => $product->category->slug, 'sub_slug' => $product->subcategory->slug]) }}" target="_blank">
-                                            {{ $product->subcategory->name }}
-                                        </a>
+                                            >
+                                            <a href="{{ route('s.category', ['slug' => $product->category->slug, 'sub_slug' => $product->subcategory->slug]) }}"
+                                                target="_blank">
+                                                {{ $product->subcategory->name }}
+                                            </a>
                                         @endisset
 
                                     </span>
@@ -396,12 +395,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            @forelse ($related_products as $product)
-                                @include('frontend.inc.single_product')
+                            @forelse ($related_products as $related_product)
+                                @include('frontend.inc.single_product', ['product' => $related_product])
                             @empty
-                            <div class="alert alert-warning">
-                                No related product to show
-                            </div>
+                                <div class="alert alert-warning">
+                                    No related product to show
+                                </div>
                             @endforelse
                         </div>
                     </div>
