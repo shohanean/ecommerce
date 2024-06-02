@@ -50,7 +50,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <a href="#"
-                                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $category->name }}</a>
+                                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $category->name }} ({{ $category->product->count() }})</a>
                                                         <span
                                                             class="text-muted fw-bold text-muted d-block fs-7">{{ $category->description }}</span>
                                                     </div>
@@ -61,6 +61,11 @@
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a> --}}
                                                 <a href="{{ route('category.edit', $category->id) }}"
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                                <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

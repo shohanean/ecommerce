@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('name')
+    Add New Product
+@endsection
+
 @section('product.index')
     active
 @endsection

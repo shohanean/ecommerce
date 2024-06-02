@@ -117,7 +117,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back();
     }
     public function get_subcategory($category_id)
     {

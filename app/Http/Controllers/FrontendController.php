@@ -15,7 +15,7 @@ class FrontendController extends Controller
 {
     function index()
     {
-        $products = Product::latest()->take(5)->get();
+        $products = Product::latest()->take(4)->get();
         return view('frontend.index', compact('products'));
     }
     function all_categories()
@@ -93,7 +93,7 @@ class FrontendController extends Controller
         foreach ($inventories as $inventory) {
             // $size_variation .= $inventory->size->name;
             if ($inventory->quantity != $inventory->sold_quantity) {
-                $size_variation .= '<div class="swatch-wrapper"><a class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+                $size_variation .= '<div id="swatch-wrapper-size" class="swatch-wrapper"><a class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
             }
         }
         echo $size_variation;

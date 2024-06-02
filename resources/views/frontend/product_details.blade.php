@@ -75,6 +75,9 @@
                                                 <img src="{{ $product->primary_image }}" alt="Products">
                                             </figure>
                                             <figure class="product-gallery__thumb--single">
+                                                <img src="{{ $product->secondary_image }}" alt="Products">
+                                            </figure>
+                                            <figure class="product-gallery__thumb--single">
                                                 <img src="{{ asset('frontend_assets') }}/img/products/prod-19-2-2.jpg"
                                                     alt="Products">
                                             </figure>
@@ -102,6 +105,9 @@
                                                 }'>
                                                 <figure class="product-gallery__image zoom">
                                                     <img src="{{ $product->primary_image }}" alt="Product">
+                                                </figure>
+                                                <figure class="product-gallery__image zoom">
+                                                    <img src="{{ $product->secondary_image }}" alt="Product">
                                                 </figure>
                                                 <figure class="product-gallery__image zoom">
                                                     <img src="{{ asset('frontend_assets') }}/img/products/prod-19-2-big.jpg"
@@ -163,17 +169,27 @@
                             <div class="clearfix"></div>
                             <p class="product-short-description mb--45 mb-sm--20">{{ $product->short_description }}</p>
                             <form action="#" class="variation-form mb--35">
+                                <input type="text" id="selected_color">
+                                <input type="text" id="selected_size">
                                 <div class="product-color-variations mb--20">
+                                    <style>
+                                        .custom-opacity{
+                                            opacity: 0.3
+                                        }
+                                    </style>
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
                                     <div class="product-color-swatch variation-wrapper">
                                         @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
                                             <div class="swatch-wrapper">
-                                                <a data-id="{{ $inv->color->id }}"
-                                                    style="background-color: {{ $inv->color->code }}"
-                                                    class="product-color-swatch-btn color_palette" data-bs-toggle="tooltip"
-                                                    data-bs-placement="left" title="{{ $inv->color->name }}">
-                                                    <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
-                                                </a>
+                                                <i id="check_mark_{{ $inv->color->id }}" style="position: absolute; margin:13px" class="fa fa-check text-dark d-none"></i>
+                                                <div id="color_palette_{{ $inv->color->id }}" class="color_palette_div">
+                                                    <a data-id="{{ $inv->color->id }}"
+                                                        style="background-color: {{ $inv->color->code }}"
+                                                        class="product-color-swatch-btn color_palette" data-bs-toggle="tooltip"
+                                                        data-bs-placement="left" title="{{ $inv->color->name }}">
+                                                        <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>
@@ -421,8 +437,21 @@
                     type: 'GET',
                     success: function(response) {
                         $('#size_variation').html(response);
+                        // add d-none to all check
+                        $('.fa-check').addClass('d-none');
+                        // remove d-none from only clicked color palette
+                        $('#check_mark_'+color_id).removeClass('d-none');
+                        // remove all custom opacity class first
+                        $('.color_palette_div').removeClass('custom-opacity');
+                        // only add custom opacity class to the clicked color palette
+                        $('#color_palette_'+color_id).addClass('custom-opacity');
+                        $('#selected_color').val(color_id);
+                        $('#selected_size').val("");
                     }
                 });
+            });
+            $('#swatch-wrapper-size').on('click', '.product-size-swatch-btn', function() {
+                alert('This is clicked, somehow not working');
             });
         });
     </script>
