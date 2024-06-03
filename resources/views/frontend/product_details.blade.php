@@ -173,7 +173,7 @@
                                 <input type="text" id="selected_size">
                                 <div class="product-color-variations mb--20">
                                     <style>
-                                        .custom-opacity{
+                                        .custom-opacity {
                                             opacity: 0.3
                                         }
                                     </style>
@@ -181,13 +181,17 @@
                                     <div class="product-color-swatch variation-wrapper">
                                         @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
                                             <div class="swatch-wrapper">
-                                                <i id="check_mark_{{ $inv->color->id }}" style="position: absolute; margin:13px" class="fa fa-check text-dark d-none"></i>
+                                                <i id="check_mark_{{ $inv->color->id }}"
+                                                    style="position: absolute; margin:13px"
+                                                    class="fa fa-check text-dark d-none"></i>
                                                 <div id="color_palette_{{ $inv->color->id }}" class="color_palette_div">
                                                     <a data-id="{{ $inv->color->id }}"
                                                         style="background-color: {{ $inv->color->code }}"
-                                                        class="product-color-swatch-btn color_palette" data-bs-toggle="tooltip"
-                                                        data-bs-placement="left" title="{{ $inv->color->name }}">
-                                                        <span class="product-color-swatch-label">{{ $inv->color->name }}</span>
+                                                        class="product-color-swatch-btn color_palette"
+                                                        data-bs-toggle="tooltip" data-bs-placement="left"
+                                                        title="{{ $inv->color->name }}">
+                                                        <span
+                                                            class="product-color-swatch-label">{{ $inv->color->name }}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -440,19 +444,28 @@
                         // add d-none to all check
                         $('.fa-check').addClass('d-none');
                         // remove d-none from only clicked color palette
-                        $('#check_mark_'+color_id).removeClass('d-none');
+                        $('#check_mark_' + color_id).removeClass('d-none');
                         // remove all custom opacity class first
                         $('.color_palette_div').removeClass('custom-opacity');
                         // only add custom opacity class to the clicked color palette
-                        $('#color_palette_'+color_id).addClass('custom-opacity');
+                        $('#color_palette_' + color_id).addClass('custom-opacity');
                         $('#selected_color').val(color_id);
                         $('#selected_size').val("");
+
+                        /*
+                        Now it's time for working on size switcher
+                        */
+                        $('.product-size-swatch-btn').click(function() {
+                            var size_id = $(this).attr('data-id');
+                            $('#selected_size').val(size_id);
+                            alert(product_id);
+                        });
                     }
                 });
             });
-            $('#swatch-wrapper-size').on('click', '.product-size-swatch-btn', function() {
-                alert('This is clicked, somehow not working');
-            });
+            // $('#swatch-wrapper-size').on('click', '.product-size-swatch-btn', function() {
+            //     alert('This is clicked, somehow not working');
+            // });
         });
     </script>
 @endsection
