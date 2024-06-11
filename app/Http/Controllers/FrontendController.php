@@ -93,7 +93,7 @@ class FrontendController extends Controller
         foreach ($inventories as $inventory) {
             // $size_variation .= $inventory->size->name;
             if ($inventory->quantity != $inventory->sold_quantity) {
-                $size_variation .= '<div id="swatch-wrapper-size" class="swatch-wrapper"><i class="fa fa-check-circle"></i><a data-id="' . $inventory->size->id . '" class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+                $size_variation .= '<div id="swatch-wrapper-size" class="swatch-wrapper"><i id="size_swatch_check_'.$inventory->size->id.'" class="text-success fa fa-check-circle d-none"></i><a data-id="' . $inventory->size->id . '" class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
             }
         }
         echo $size_variation;

@@ -215,7 +215,8 @@
                                     <button type="button" class="btn btn-style-1 btn-large add-to-cart">
                                         Add To Cart
                                     </button>
-                                    <a href="wishlist.html"><i class="dl-icon-heart2"></i></a>
+                                    <i class="fa fa-heart-o fa-2x"></i>
+                                    <i class="fa fa-compare fa-2x"></i>
                                     <a href="compare.html"><i class="dl-icon-compare2"></i></a>
                                 </div>
                             </form>
@@ -451,21 +452,18 @@
                         $('#color_palette_' + color_id).addClass('custom-opacity');
                         $('#selected_color').val(color_id);
                         $('#selected_size').val("");
-
                         /*
                         Now it's time for working on size switcher
                         */
                         $('.product-size-swatch-btn').click(function() {
                             var size_id = $(this).attr('data-id');
                             $('#selected_size').val(size_id);
-                            alert(product_id);
+                            $('.fa-check-circle').addClass('d-none');
+                            $('#size_swatch_check_'+size_id).removeClass('d-none');
                         });
                     }
                 });
             });
-            // $('#swatch-wrapper-size').on('click', '.product-size-swatch-btn', function() {
-            //     alert('This is clicked, somehow not working');
-            // });
         });
     </script>
 @endsection
