@@ -298,66 +298,14 @@
                             {"breakpoint":575, "settings": {"slidesToShow": 2} },
                             {"breakpoint":380, "settings": {"slidesToShow": 1} }
                         ]'>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner1.png" alt="Partner">
+                        @for ($x = 1; $x < 10; $x++)
+                            <div class="item">
+                                <div class="single-partner">
+                                    <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner1.png"
+                                        alt="Partner">
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner2.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner3.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner4.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner5.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner6.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner1.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner2.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner3.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner4.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner5.png" alt="Partner">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-partner">
-                                <img src="{{ asset('frontend_assets') }}/img/partner/logo-partner6.png" alt="Partner">
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -393,8 +341,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c1-1.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c1-1.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Floral print kimono</p>
@@ -407,8 +354,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Floral print kimono</p>
@@ -447,8 +393,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-2.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-2.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Knot textured dress</p>
@@ -461,8 +406,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Knot textured dress</p>
@@ -501,8 +445,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c3-1.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c3-1.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Flecked cotton linen cardigan
@@ -516,8 +459,7 @@
                             <div class="banner-box banner-type-4 banner-hover-1">
                                 <div class="banner-inner">
                                     <div class="banner-image">
-                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg"
-                                            alt="Banner">
+                                        <img src="{{ asset('frontend_assets') }}/img/banner/m04-c2-1.jpg" alt="Banner">
                                     </div>
                                     <div class="banner-info">
                                         <p class="banner-title-3 heading-color">Flecked cotton linen cardigan
@@ -571,34 +513,34 @@
                             {"breakpoint":991, "settings": {"slidesToShow": 2} },
                             {"breakpoint":767, "settings": {"slidesToShow": 1} }
                         ]'>
-                        @for ($i=1; $i<=5; $i++)
-                        <div class="item">
-                            <article class="blog">
-                                <div class="blog-media">
-                                    <div class="image">
-                                        <a href="single-post.html">
-                                            <img src="{{ asset('frontend_assets') }}/img/blog/image-545x363.jpg"
-                                                alt="Blog Thumb">
-                                        </a>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <div class="item">
+                                <article class="blog">
+                                    <div class="blog-media">
+                                        <div class="image">
+                                            <a href="single-post.html">
+                                                <img src="{{ asset('frontend_assets') }}/img/blog/image-545x363.jpg"
+                                                    alt="Blog Thumb">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="blog-info">
-                                    <div class="blog-entry-meta">
-                                        <span class="blog-category">
-                                            <a href="blog.html">Trends</a>
-                                        </span>
+                                    <div class="blog-info">
+                                        <div class="blog-entry-meta">
+                                            <span class="blog-category">
+                                                <a href="blog.html">Trends</a>
+                                            </span>
+                                        </div>
+                                        <h3 class="blog-title">
+                                            <a href="single-post.html">{{ $i }} to Sunday</a>
+                                        </h3>
+                                        <div class="blog-footer-meta">
+                                            <a href="blog.html" class="posted-on">September 16, 2018</a>
+                                            <span class="meta-separator">-</span>
+                                            <a href="blog.html" class="posted-by">By John Snow</a>
+                                        </div>
                                     </div>
-                                    <h3 class="blog-title">
-                                        <a href="single-post.html">{{ $i }} to Sunday</a>
-                                    </h3>
-                                    <div class="blog-footer-meta">
-                                        <a href="blog.html" class="posted-on">September 16, 2018</a>
-                                        <span class="meta-separator">-</span>
-                                        <a href="blog.html" class="posted-by">By John Snow</a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
+                                </article>
+                            </div>
                         @endfor
                     </div>
                 </div>
