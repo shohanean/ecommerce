@@ -147,11 +147,9 @@
                                     <i class="dl-icon-star rated"></i>
                                     <i class="dl-icon-star rated"></i>
                                 </span>
-                                <a href="#" class="review-link">(100 customer
-                                    review)</a>
+                                <a href="#" class="review-link">(No customer review)</a>
                             </div>
                             <div class="product-navigation">
-
                                 @if ($previous)
                                     <a href="{{ route('product.details', $previous->slug) }}" class="prev"><i
                                             class="dl-icon-left"></i></a>
@@ -176,7 +174,9 @@
                             <div class="clearfix"></div>
                             <p class="product-short-description mb--45 mb-sm--20">{{ $product->short_description }}</p>
                             <form action="#" class="variation-form mb--35">
+                                Color ID
                                 <input type="text" id="selected_color">
+                                Size ID
                                 <input type="text" id="selected_size">
                                 <div class="product-color-variations mb--20">
                                     <style>

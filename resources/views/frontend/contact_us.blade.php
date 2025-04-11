@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('name')
-Contact Us
+    Contact Us
 @endsection
 
 @section('contact.us')
@@ -32,6 +32,9 @@ Contact Us
                 <div class="row pt--75 pt-md--50 pt-sm--30 pb--80 pb-md--60 pb-sm--35">
                     <div class="col-md-7 mb-sm--30">
                         <h2 class="heading-secondary mb--50 mb-md--35 mb-sm--20">Get in touch</h2>
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
                         @session('success')
                             <div class="alert alert-info">{{ $value }}</div>
                         @endsession

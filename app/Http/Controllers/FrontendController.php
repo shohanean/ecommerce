@@ -82,6 +82,9 @@ class FrontendController extends Controller
     }
     function contact_us_post(Request $request)
     {
+        $request->validate([
+            '*' => 'required'
+        ]);
         Contact::create($request->except('_token') + [
             'ip_address' => $request->ip()
         ]);
