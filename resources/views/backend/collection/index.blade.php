@@ -49,10 +49,13 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="d-flex justify-content-start flex-column">
-                                                        <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $collection->top_title }}</a>
-                                                        <span class="text-muted fw-bold text-muted d-block fs-7">{{ $collection->lower_title }}</span>
+                                                        <a
+                                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $collection->top_title }}</a>
+                                                        <span
+                                                            class="text-muted fw-bold text-muted d-block fs-7">{{ $collection->lower_title }}</span>
                                                         <strong>{{ $collection->strong_title }}</strong>
-                                                        <img src="{{ $collection->thumbnail }}" alt="not found" width="100">
+                                                        <img src="{{ $collection->thumbnail }}" alt="not found"
+                                                            width="100">
                                                     </div>
                                                 </div>
                                             </td>
@@ -61,7 +64,8 @@
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a> --}}
                                                 <a href="{{ route('collection.edit', $collection->id) }}"
                                                     class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                                <form action="{{ route('collection.destroy', $collection->id) }}" method="POST">
+                                                <form action="{{ route('collection.destroy', $collection->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-danger">Delete</button>
@@ -69,7 +73,9 @@
                                             </td>
                                         </tr>
                                     @empty
-                                    <tr><td colspan="2" class="text-center text-danger">No collection to show</td></tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center text-danger">No collection to show</td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                                 <!--end::Table body-->
@@ -112,7 +118,8 @@
                                     <label class="form-label">Top Title</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input class="form-control" name="top_title" placeholder="Top Title" value="{{ old('top_title') }}"/>
+                                    <input class="form-control" name="top_title" placeholder="Top Title"
+                                        value="{{ old('top_title') }}" />
                                     <!--end::Input-->
                                 </div>
                             </div>
@@ -124,7 +131,8 @@
                                     <label class="form-label">Lower Title</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input class="form-control" name="lower_title" placeholder="Lower Title" value="{{ old('lower_title') }}"/>
+                                    <input class="form-control" name="lower_title" placeholder="Lower Title"
+                                        value="{{ old('lower_title') }}" />
                                     <!--end::Input-->
                                 </div>
                             </div>
@@ -136,7 +144,8 @@
                                     <label class="form-label">Strong Title</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input class="form-control" name="strong_title" placeholder="Strong Title" value="{{ old('strong_title') }}"/>
+                                    <input class="form-control" name="strong_title" placeholder="Strong Title"
+                                        value="{{ old('strong_title') }}" />
                                     <!--end::Input-->
                                 </div>
                             </div>
@@ -148,7 +157,8 @@
                                     <label class="required form-label">Thumbnail</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail"/>
+                                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror"
+                                        name="thumbnail" />
                                     @error('thumbnail')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

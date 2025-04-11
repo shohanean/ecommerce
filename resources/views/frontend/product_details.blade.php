@@ -151,8 +151,15 @@
                                     review)</a>
                             </div>
                             <div class="product-navigation">
-                                <a href="#" class="prev"><i class="dl-icon-left"></i></a>
-                                <a href="#" class="next"><i class="dl-icon-right"></i></a>
+
+                                @if ($previous)
+                                    <a href="{{ route('product.details', $previous->slug) }}" class="prev"><i
+                                            class="dl-icon-left"></i></a>
+                                @endif
+                                @if ($next)
+                                    <a href="{{ route('product.details', $next->slug) }}" class="next"><i
+                                            class="dl-icon-right"></i></a>
+                                @endif
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product->name }}</h3>
@@ -459,7 +466,7 @@
                             var size_id = $(this).attr('data-id');
                             $('#selected_size').val(size_id);
                             $('.fa-check-circle').addClass('d-none');
-                            $('#size_swatch_check_'+size_id).removeClass('d-none');
+                            $('#size_swatch_check_' + size_id).removeClass('d-none');
                         });
                     }
                 });

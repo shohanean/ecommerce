@@ -37,8 +37,12 @@ class FrontendController extends Controller
     function product_details($slug)
     {
         $product = Product::with(['category', 'product_tag'])->where('slug', $slug)->firstOrFail();
+        // Find previous product (based on ID or created_at)
+        $previous = Product::where('id', '<', $product->id)->orderBy('id', 'desc')->first();
+        // Find next product
+        $next = Product::where('id', '>', $product->id)->orderBy('id')->first();
         $related_products = Product::where('id', '!=', $product->id)->where('category_id', $product->category->id)->get();
-        return view('frontend.product_details', compact('product', 'related_products'));
+        return view('frontend.product_details', compact('product', 'previous', 'next', 'related_products'));
     }
     function shop(Request $request, $per_page = 10)
     {
@@ -93,7 +97,7 @@ class FrontendController extends Controller
         foreach ($inventories as $inventory) {
             // $size_variation .= $inventory->size->name;
             if ($inventory->quantity != $inventory->sold_quantity) {
-                $size_variation .= '<div id="swatch-wrapper-size" class="swatch-wrapper"><i id="size_swatch_check_'.$inventory->size->id.'" class="text-success fa fa-check-circle d-none"></i><a data-id="' . $inventory->size->id . '" class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
+                $size_variation .= '<div id="swatch-wrapper-size" class="swatch-wrapper"><i id="size_swatch_check_' . $inventory->size->id . '" class="text-success fa fa-check-circle d-none"></i><a data-id="' . $inventory->size->id . '" class="product-size-swatch-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="' . $inventory->size->name . '"><span class="product-size-swatch-label">' . $inventory->size->name . '</span></a></div>';
             }
         }
         echo $size_variation;
