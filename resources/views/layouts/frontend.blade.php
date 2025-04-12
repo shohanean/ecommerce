@@ -69,22 +69,26 @@
                                                 <span class="mm-text">Home</span>
                                             </a>
                                         </li>
-                                        <li class="mainmenu__item menu-item-has-children has-children @yield('category')">
+                                        <li
+                                            class="mainmenu__item menu-item-has-children has-children @yield('category')">
                                             <a href="{{ route('all.categories') }}" class="mainmenu__link">
                                                 <span class="mm-text">Category</span>
                                             </a>
                                             <ul class="sub-menu">
                                                 @foreach (categories() as $category)
-                                                    <li class="@if($category->subcategory->count()>0) menu-item-has-children has-children @endif">
+                                                    <li
+                                                        class="@if ($category->subcategory->count() > 0) menu-item-has-children has-children @endif">
                                                         <a href="{{ route('s.category', $category->slug) }}">
                                                             <span class="mm-text">{{ $category->name }}</span>
                                                         </a>
-                                                        @if ($category->subcategory->count()>0)
+                                                        @if ($category->subcategory->count() > 0)
                                                             <ul class="sub-menu">
                                                                 @foreach ($category->subcategory as $subcategory)
                                                                     <li>
-                                                                        <a href="{{ route('s.category', ['slug' => $category->slug, 'sub_slug' => $subcategory->slug]) }}">
-                                                                            <span class="mm-text">{{ $subcategory->name }}</span>
+                                                                        <a
+                                                                            href="{{ route('s.category', ['slug' => $category->slug, 'sub_slug' => $subcategory->slug]) }}">
+                                                                            <span
+                                                                                class="mm-text">{{ $subcategory->name }}</span>
                                                                         </a>
                                                                     </li>
                                                                 @endforeach
@@ -1205,6 +1209,7 @@
 
     <!-- REVOLUTION ACTIVE JS FILES -->
     <script src="{{ asset('frontend_assets') }}/js/revoulation.js"></script>
+    {!! NoCaptcha::renderJs() !!}
     @yield('footer_scripts')
 </body>
 

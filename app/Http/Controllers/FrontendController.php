@@ -83,9 +83,19 @@ class FrontendController extends Controller
     function contact_us_post(Request $request)
     {
         $request->validate([
-            '*' => 'required'
+            '*' => 'required',
+            'contact_email' => 'email',
+            'g-recaptcha-response' => 'required|captcha'
+        ], [
+            'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
+            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.'
+        ], [
+            'contact_name' => 'Name',
+            'contact_email' => 'Email Address',
+            'contact_phone' => 'Phone Number',
+            'contact_message' => 'Message',
         ]);
-        Contact::create($request->except('_token') + [
+        Contact::create($request->except('_token', 'g-recaptcha-response') + [
             'ip_address' => $request->ip()
         ]);
         return back()->with('success', 'Message Send Successfully!');

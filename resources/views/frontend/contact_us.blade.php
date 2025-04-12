@@ -32,9 +32,6 @@
                 <div class="row pt--75 pt-md--50 pt-sm--30 pb--80 pb-md--60 pb-sm--35">
                     <div class="col-md-7 mb-sm--30">
                         <h2 class="heading-secondary mb--50 mb-md--35 mb-sm--20">Get in touch</h2>
-                        @foreach ($errors->all() as $error)
-                            <div class="alert alert-danger">{{ $error }}</div>
-                        @endforeach
                         @session('success')
                             <div class="alert alert-info">{{ $value }}</div>
                         @endsession
@@ -43,18 +40,41 @@
                             @csrf
                             <div class="form__group mb--20">
                                 <input type="text" id="contact_name" name="contact_name"
-                                    class="form__input form__input--2" placeholder="Your name*">
+                                    class="form__input form__input--2 @error('contact_name') border border-danger @enderror"
+                                    placeholder="Your name*" value="{{ old('contact_name') }}">
+                                @error('contact_name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
+
                             <div class="form__group mb--20">
                                 <input type="email" id="contact_email" name="contact_email"
-                                    class="form__input form__input--2" placeholder="Email Address*">
+                                    class="form__input form__input--2  @error('contact_email') border border-danger @enderror"
+                                    placeholder="Email Address*" value="{{ old('contact_email') }}">
+                                @error('contact_email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form__group mb--20">
                                 <input type="text" id="contact_phone" name="contact_phone"
-                                    class="form__input form__input--2" placeholder="Your Phone*">
+                                    class="form__input form__input--2  @error('contact_phone') border border-danger @enderror"
+                                    placeholder="Your Phone*" value="{{ old('contact_phone') }}">
+                                @error('contact_phone')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form__group mb--20">
-                                <textarea class="form__input form__input--textarea" id="contact_message" name="contact_message" placeholder="Message*"></textarea>
+                                <textarea class="form__input form__input--textarea  @error('contact_message') border border-danger @enderror"
+                                    id="contact_message" name="contact_message" placeholder="Message*">{{ old('contact_message') }}</textarea>
+                                @error('contact_message')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form__group mb--20">
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form__group">
                                 <button type="submit" class="btn btn-submit btn-style-1">Send</button>
