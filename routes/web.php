@@ -21,7 +21,11 @@ Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('all/categories', [FrontendController::class, 'all_categories'])->name('all.categories');
 Route::get('s_category/{slug}/{sub_slug?}', [FrontendController::class, 's_category'])->name('s.category');
 Route::get('product-details/{slug}', [FrontendController::class, 'product_details'])->name('product.details');
+
+//Ajax Requests
 Route::get('get/size/{product_id}/{color_id}', [FrontendController::class, 'get_size'])->name('get.size');
+Route::post('toggle/favourite', [FrontendController::class, 'toggle_favourite'])->name('toggle.favourite');
+
 Route::get('collections', [FrontendController::class, 'collections'])->name('collections');
 Route::get('collections/{slug}', [FrontendController::class, 's_collections'])->name('s.collections');
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');

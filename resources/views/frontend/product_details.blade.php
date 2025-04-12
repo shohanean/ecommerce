@@ -222,9 +222,8 @@
                                     <button type="button" class="btn btn-style-1 btn-large add-to-cart">
                                         Add To Cart
                                     </button>
-                                    <i class="fa fa-heart-o fa-2x"></i>
-                                    <i class="fa fa-compare fa-2x"></i>
-                                    <a href="compare.html"><i class="dl-icon-compare2"></i></a>
+                                    <i id="add_to_favourite" class="fa fa-heart-o fa-2x"></i>
+                                    <i class="fa fa-heart fa-2x text-danger"></i>
                                 </div>
                             </form>
                             <div class="product-extra mb--40 mb-sm--20">
@@ -441,6 +440,20 @@
 @section('footer_scripts')
     <script>
         $(document).ready(function() {
+            $('#add_to_favourite').click(function() {
+                var product_id = "{{ $product->id }}";
+                $.ajax({
+                    url: "{{ url('toggle/favourite') }}",
+                    type: 'POST',
+                    data: {
+                        product_id: product_id,
+                        _token: '{{ csrf_token() }}' // required for POST in Laravel
+                    },
+                    success: function(response) {
+                        alert('hihihihihi');
+                    }
+                });
+            });
             $('.color_palette').click(function() {
                 var color_id = $(this).attr('data-id');
                 var product_id = "{{ $product->id }}";

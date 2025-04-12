@@ -175,7 +175,12 @@
                                     <li class="header-toolbar__item">
                                         <a href="#miniCart" class="mini-cart-btn toolbar-btn">
                                             <i class="dl-icon-cart4"></i>
-                                            <sup class="mini-cart-count">2</sup>
+                                            <sup class="mini-cart-count">000</sup>
+                                        </a>
+                                    </li>
+                                    <li class="header-toolbar__item">
+                                        <a href="#miniCart" class="mini-cart-btn toolbar-btn">
+                                            <i class="fa fa-heart text-danger"></i>
                                         </a>
                                     </li>
                                     <li class="header-toolbar__item">

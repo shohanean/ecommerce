@@ -115,4 +115,8 @@ class FrontendController extends Controller
         }
         echo $size_variation;
     }
+    function toggle_favourite(Request $request)
+    {
+        return $request->product_id;
+    }
 }

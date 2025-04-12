@@ -16,7 +16,7 @@
                 <div class="col-12 text-center">
                     <h1 class="page-title">Contact Us</h1>
                     <ul class="breadcrumb justify-content-center">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('index') }}">Home</a></li>
                         <li class="current"><span>Contact Us</span></li>
                     </ul>
                 </div>
