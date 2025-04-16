@@ -35,4 +35,10 @@ class Product extends Model
     {
         return $this->hasMany(Product_tag::class, 'product_id', 'id');
     }
+    function is_favourite()
+    {
+        return Favourite::where('product_id', $this->id)
+            ->where('user_id', auth()->id())
+            ->exists();
+    }
 }

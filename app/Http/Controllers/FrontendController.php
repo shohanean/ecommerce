@@ -8,6 +8,7 @@ use App\Models\Subcategory;
 use App\Models\Collection;
 use App\Models\Product;
 use App\Models\Contact;
+use App\Models\Favourite;
 use App\Models\Inventory;
 use App\Models\Tag;
 
@@ -117,6 +118,17 @@ class FrontendController extends Controller
     }
     function toggle_favourite(Request $request)
     {
-        return $request->product_id;
+        //Prevent duplicates
+        $exists = Favourite::where('user_id', auth()->user()->id)->where('product_id', $request->product_id)->exists();
+        if (!$exists) {
+            Favourite::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $request->product_id,
+            ]);
+            return response()->json(['message' => 'added']);
+        } else {
+            Favourite::where('user_id', auth()->user()->id)->where('product_id', $request->product_id)->forceDelete();
+            return response()->json(['message' => 'removed']);
+        }
     }
 }

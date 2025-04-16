@@ -222,8 +222,12 @@
                                     <button type="button" class="btn btn-style-1 btn-large add-to-cart">
                                         Add To Cart
                                     </button>
-                                    <i id="add_to_favourite" class="fa fa-heart-o fa-2x"></i>
-                                    <i class="fa fa-heart fa-2x text-danger"></i>
+
+                                    @if ($product->is_favourite())
+                                        <i id="add_to_favourite" class="fa fa-heart fa-2x text-danger"></i>
+                                    @else
+                                        <i id="add_to_favourite" class="fa fa-heart-o fa-2x"></i>
+                                    @endif
                                 </div>
                             </form>
                             <div class="product-extra mb--40 mb-sm--20">
@@ -450,7 +454,47 @@
                         _token: '{{ csrf_token() }}' // required for POST in Laravel
                     },
                     success: function(response) {
-                        alert('hihihihihi');
+                        if (response.message == "added") {
+                            $('#add_to_favourite').removeClass("fa-heart-o");
+                            $('#add_to_favourite').addClass("fa-heart text-danger");
+                            //toast start
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Add to favourite"
+                            });
+                            //toast end
+                        } else {
+                            $('#add_to_favourite').removeClass("fa-heart text-danger");
+                            $('#add_to_favourite').addClass("fa-heart-o");
+                            //toast start
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "warning",
+                                title: "Removed from favourite"
+                            });
+                            //toast end
+                        }
                     }
                 });
             });

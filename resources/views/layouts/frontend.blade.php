@@ -1214,6 +1214,7 @@
 
     <!-- REVOLUTION ACTIVE JS FILES -->
     <script src="{{ asset('frontend_assets') }}/js/revoulation.js"></script>
+    <script src="{{ asset('frontend_assets') }}/js/sweetalert2.js"></script>
     {!! NoCaptcha::renderJs() !!}
     @yield('footer_scripts')
 </body>
