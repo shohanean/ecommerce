@@ -28,6 +28,9 @@ Route::post('toggle/favourite', [FrontendController::class, 'toggle_favourite'])
 
 Route::get('collections', [FrontendController::class, 'collections'])->name('collections');
 Route::get('collections/{slug}', [FrontendController::class, 's_collections'])->name('s.collections');
+
+Route::get('favourites', [FrontendController::class, 'favourites'])->name('favourites');
+
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 Route::post('contact-us', [FrontendController::class, 'contact_us_post'])->name('contact.us.post');
 

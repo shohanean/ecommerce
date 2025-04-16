@@ -77,6 +77,10 @@ class FrontendController extends Controller
             'products' => Product::where('collection_id', $collection->id)->get()
         ]);
     }
+    function favourites()
+    {
+        return view('frontend.favourites');
+    }
     function contact_us()
     {
         return view('frontend.contact_us');
