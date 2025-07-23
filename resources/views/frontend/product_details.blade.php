@@ -222,12 +222,13 @@
                                     <button type="button" class="btn btn-style-1 btn-large add-to-cart">
                                         Add To Cart
                                     </button>
-
-                                    @if ($product->is_favourite())
-                                        <i id="add_to_favourite" class="fa fa-heart fa-2x text-danger"></i>
-                                    @else
-                                        <i id="add_to_favourite" class="fa fa-heart-o fa-2x"></i>
-                                    @endif
+                                    @auth
+                                        @if ($product->is_favourite())
+                                            <i id="add_to_favourite" class="fa fa-heart fa-2x text-danger"></i>
+                                        @else
+                                            <i id="add_to_favourite" class="fa fa-heart-o fa-2x"></i>
+                                        @endif
+                                    @endauth
                                 </div>
                             </form>
                             <div class="product-extra mb--40 mb-sm--20">

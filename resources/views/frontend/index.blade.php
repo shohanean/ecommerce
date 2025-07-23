@@ -557,9 +557,7 @@
                         <h2 class="heading-secondary mb--20">Join Our Newsletter</h2>
                         <p class="heading-color font-size-16 font-bold lts-2 mb--30">GET 15% OFF YOUR FIRST
                             ORDER</p>
-                        <form
-                            action="https://company.us19.list-manage.com/subscribe/post?u=2f2631cacbe4767192d339ef2&amp;id=24db23e68a"
-                            class="newsletter-form mc-form" method="post" target="_blank">
+                        <form action="{{ url('newsletter') }}" class="newsletter-form" method="post">
                             <input type="email" name="newsletter_email" id="newsletter_email"
                                 placeholder="Enter your email address.." required="required"
                                 class="newsletter-form__input">
