@@ -557,7 +557,8 @@
                         <h2 class="heading-secondary mb--20">Join Our Newsletter</h2>
                         <p class="heading-color font-size-16 font-bold lts-2 mb--30">GET 15% OFF YOUR FIRST
                             ORDER</p>
-                        <form action="{{ url('newsletter') }}" class="newsletter-form" method="post">
+                        <form action="{{ route('newsletter') }}" class="newsletter-form" method="post">
+                            @csrf
                             <input type="email" name="newsletter_email" id="newsletter_email"
                                 placeholder="Enter your email address.." required="required"
                                 class="newsletter-form__input">

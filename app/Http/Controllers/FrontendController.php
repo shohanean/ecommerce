@@ -35,6 +35,10 @@ class FrontendController extends Controller
         }
         return view('frontend.s_category', compact('category', 'products'));
     }
+    function newsletter(Request $request)
+    {
+        return $request;
+    }
     function product_details($slug)
     {
         $product = Product::with(['category', 'product_tag'])->where('slug', $slug)->firstOrFail();
