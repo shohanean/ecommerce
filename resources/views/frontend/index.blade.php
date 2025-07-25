@@ -564,6 +564,11 @@
                                 class="newsletter-form__input">
                             <button type="submit" class="newsletter-form__submit">Subscribe</button>
                         </form>
+                        @if (session('newsletter_success'))
+                            <div class="alert alert-success">
+                                {{ session('newsletter_success') }}
+                            </div>
+                        @endif
                         <!-- mailchimp-alerts Start -->
                         <div class="mailchimp-alerts">
                             <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->

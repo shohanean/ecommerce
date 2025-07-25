@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Contact;
 use App\Models\Favourite;
 use App\Models\Inventory;
+use App\Models\Newsletter;
 use App\Models\Tag;
 
 class FrontendController extends Controller
@@ -37,7 +38,8 @@ class FrontendController extends Controller
     }
     function newsletter(Request $request)
     {
-        return $request;
+        Newsletter::create($request->except('_token'));
+        return back()->with('newsletter_success', 'Email recorded successfully!');
     }
     function product_details($slug)
     {
