@@ -16,6 +16,7 @@ use App\Http\Controllers\{FrontendController, HomeController, SocialController, 
 |
 */
 
+Route::get('test', [FrontendController::class, 'test'])->name('test');
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('all/categories', [FrontendController::class, 'all_categories'])->name('all.categories');

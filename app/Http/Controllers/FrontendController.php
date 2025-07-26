@@ -15,6 +15,10 @@ use App\Models\Tag;
 
 class FrontendController extends Controller
 {
+    function test()
+    {
+        return view('frontend.test');
+    }
     function index()
     {
         $products = Product::latest()->take(4)->get();

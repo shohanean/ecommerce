@@ -26,7 +26,7 @@
         <div class="page-content-inner enable-full-width">
             <div class="container-fluid">
                 <div class="row pt--40">
-                    <div class="col-md-6 product-main-image">
+                    <div class="col-md-6 product-main-image d-none">
                         <div class="product-image">
                             <div class="product-gallery vertical-slide-nav">
                                 <div class="product-gallery__thumb">
@@ -136,6 +136,9 @@
                                 <span class="product-badge {{ $product->status }}">{{ $product->status }}</span>
                             @endisset
                         </div>
+                    </div>
+                    <div class="col-md-6 product-main-image">
+                        <h1>asd</h1>
                     </div>
                     <div class="col-md-6 product-main-details mt--40 mt-md--10 mt-sm--30">
                         <div class="product-summary">
