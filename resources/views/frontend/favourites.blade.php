@@ -107,7 +107,7 @@
     <!-- Breadcrumb area End -->
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
