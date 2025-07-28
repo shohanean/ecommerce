@@ -180,7 +180,7 @@
                                         </a>
                                     </li>
                                     <li class="header-toolbar__item">
-                                        <a href="#miniCart" class="mini-cart-btn toolbar-btn">
+                                        <a href="{{ route('favourites') }}">
                                             <i class="fa fa-heart text-danger"></i>
                                         </a>
                                     </li>

@@ -355,42 +355,21 @@
                                             <a href="shop-sidebar.html">{{ $p_tag->tag->name }}</a>
                                         @endforeach
                                     </div>
-                                    {{-- <span class="posted_in font-size-12">Tags:
-                                        @foreach ($product->product_tag as $p_tag)
-                                            <a href="link_here">
-                                                {{ $p_tag->tag->name }}@if (!$loop->last)
-                                                    ,
-                                                @endif
-                                            </a>
-                                        @endforeach
-                                    </span> --}}
-                                </div>
-                                <div class="product-share-box">
-                                    <span class="font-size-12">Share With</span>
-                                    <!-- Social Icons Start Here -->
-                                    <ul class="social social-small">
-                                        <li class="social__item">
-                                            <a href="https://facebook.com/" class="social__link">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social__item">
-                                            <a href="https://twitter.com/" class="social__link">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social__item">
-                                            <a href="https://plus.google.com/" class="social__link">
-                                                <i class="fa fa-google-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social__item">
-                                            <a href="https://plus.google.com/" class="social__link">
-                                                <i class="fa fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <!-- Social Icons End Here -->
+                                    <div>
+                                        Share With
+                                        <a href="">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-square-o fa-stack-2x"></i>
+                                                <i class="fa fa-facebook fa-stack-1x"></i>
+                                            </span>
+                                        </a>
+                                        <a href="">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-square-o fa-stack-2x"></i>
+                                                <i class="fa fa-twitter fa-stack-1x"></i>
+                                            </span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -89,7 +89,9 @@ class FrontendController extends Controller
     }
     function favourites()
     {
-        return view('frontend.favourites');
+        return view('frontend.favourites', [
+            'favourites' => Favourite::with('product')->where('user_id', auth()->id())->get()
+        ]);
     }
     function contact_us()
     {
