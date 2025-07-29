@@ -93,6 +93,12 @@ class FrontendController extends Controller
             'favourites' => Favourite::with('product')->where('user_id', auth()->id())->get()
         ]);
     }
+    function favourite_destroy($id)
+    {
+        $user = Favourite::withTrashed()->findOrFail($id); // include soft-deleted
+        $user->forceDelete(); // permanently delete from DB
+        return redirect()->back()->with('success', 'Favourite removed successfully.');
+    }
     function contact_us()
     {
         return view('frontend.contact_us');

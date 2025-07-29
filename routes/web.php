@@ -32,6 +32,7 @@ Route::get('collections', [FrontendController::class, 'collections'])->name('col
 Route::get('collections/{slug}', [FrontendController::class, 's_collections'])->name('s.collections');
 
 Route::get('favourites', [FrontendController::class, 'favourites'])->name('favourites');
+Route::delete('/favourite/{id}', [FrontendController::class, 'favourite_destroy'])->name('favourite.destroy');
 
 Route::get('contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 Route::post('contact-us', [FrontendController::class, 'contact_us_post'])->name('contact.us.post');

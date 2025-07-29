@@ -24,6 +24,11 @@
                 <div class="row pt--80 pt-md--60 pt-sm--40 pb--65 pb-md--45 pb-sm--25">
                     <div class="col-12" id="main-content">
                         <div class="table-content table-responsive">
+                            @if (session('success'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <table class="table table-style-2 wishlist-table text-center">
                                 <thead>
                                     <tr>
@@ -39,13 +44,14 @@
                                     @forelse ($favourites as $favourite)
                                         <tr>
                                             <td class="product-remove text-start">
-                                                {{-- <a href="#"><i class="dl-icon-close"></i></a> --}}
-                                                <a href="">
-                                                    <span class="fa-stack fa-lg">
-                                                        <i class="fa fa-square-o fa-stack-2x"></i>
-                                                        <i class="fa fa-times fa-stack-1x"></i>
-                                                    </span>
-                                                </a>
+                                                <form action="{{ route('favourite.destroy', $favourite->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td class="product-thumbnail text-start">
                                                 <img src="{{ $favourite->product->primary_image }}" alt="Product Thumnail">
@@ -56,9 +62,14 @@
                                                         href="{{ route('product.details', $favourite->product->slug) }}">{{ $favourite->product->name }}</a>
                                                 </h3>
                                             </td>
-                                            <td class="product-stock text-success">
-                                                <i class="fa fa-check"></i> In Stock
-                                                <i class="fa fa-exclamation-circle"></i> Stock Out
+                                            <td class="product-stock">
+                                                <span class="text-success">
+                                                    <i class="fa fa-check"></i> In Stock
+                                                </span>
+                                                <br>
+                                                <span class="text-danger">
+                                                    <i class="fa fa-exclamation-circle"></i> Stock Out
+                                                </span>
                                             </td>
                                             <td class="product-price">
                                                 <span class="product-price-wrapper">
