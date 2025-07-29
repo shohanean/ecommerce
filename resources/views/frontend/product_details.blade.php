@@ -256,23 +256,22 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product->name }}</h3>
-                            <span class="product-stock in-stock float-right">
-                                <i class="dl-icon-check-circle1"></i>
+                            <span class="product-stock in-stock float-right fs-3 text-success">
+                                <i class="fa fa-check-circle-o"></i>
                                 in stock
                             </span>
                             <div class="product-price-wrapper mb--40 mb-md--10">
-                                <span class="money">$49.00</span>
+                                <span class="money" id="offer_price"></span>
                                 <span class="old-price">
-                                    <span class="money">$60.00</span>
+                                    <span class="money" id="selling_price"></span>
                                 </span>
                             </div>
                             <div class="clearfix"></div>
                             <p class="product-short-description mb--45 mb-sm--20">{{ $product->short_description }}</p>
                             <form action="#" class="variation-form mb--35">
-                                Color ID
-                                <input type="text" id="selected_color">
-                                Size ID
-                                <input type="text" id="selected_size">
+                                <input type="text" id="selected_color" hidden>
+                                <input type="text" id="selected_size" hidden>
+
                                 <div class="product-color-variations mb--20">
                                     <style>
                                         .custom-opacity {
@@ -305,16 +304,17 @@
                                     <div class="product-size-swatch variation-wrapper" id="size_variation">
                                         Choose color first
                                     </div>
+                                    <small class="text-success" id="available_stock"></small>
                                 </div>
                             </form>
-
                             <form action="#" class="form--action mb--30 mb-sm--20">
                                 <div class="product-action flex-row align-items-center">
                                     <div class="quantity">
-                                        <input type="number" class="quantity-input" name="qty" id="qty"
-                                            value="1" min="1">
+                                        <input disabled type="number" class="quantity-input" name="qty"
+                                            id="qty" value="1" min="1">
                                     </div>
-                                    <button type="button" class="btn btn-style-1 btn-large add-to-cart">
+                                    <button id="add_to_cart_btn" type="button"
+                                        class="btn btn-style-1 btn-large add-to-cart">
                                         Add To Cart
                                     </button>
                                     @auth
@@ -610,6 +610,9 @@
                         $('#color_palette_' + color_id).addClass('custom-opacity');
                         $('#selected_color').val(color_id);
                         $('#selected_size').val("");
+                        $('#available_stock').html("");
+                        $('#offer_price').html("");
+                        $('#selling_price').html("");
                         /*
                         Now it's time for working on size switcher
                         */
@@ -618,9 +621,61 @@
                             $('#selected_size').val(size_id);
                             $('.fa-check-circle').addClass('d-none');
                             $('#size_swatch_check_' + size_id).removeClass('d-none');
+                            $.ajax({
+                                url: "{{ url('inventory/status') }}",
+                                type: 'POST',
+                                data: {
+                                    product_id: product_id,
+                                    color_id: color_id,
+                                    size_id: size_id,
+                                    _token: '{{ csrf_token() }}' // required for POST in Laravel
+                                },
+                                success: function(response) {
+                                    $('#available_stock').html(
+                                        "Available Stock: " + JSON
+                                        .stringify(response
+                                            .quantity));
+
+                                    var offer_price = JSON.stringify(
+                                        Number(response.offer_price)
+                                    );
+                                    var selling_price = JSON.stringify(
+                                        Number(response.selling_price)
+                                    );
+
+                                    if (offer_price == 0) {
+                                        $('#offer_price').html(
+                                            selling_price);
+                                    } else {
+                                        $('#offer_price').html(offer_price);
+                                        $('#selling_price').html(
+                                            selling_price);
+                                    }
+                                }
+                            });
                         });
                     }
                 });
+            });
+
+            $('#add_to_cart_btn').click(function() {
+                if ($('#selected_color').val()) {
+                    if ($('#selected_size').val()) {
+                        alert("All good");
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning!',
+                            text: 'Please choose the size first',
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Warning!',
+                        text: 'Please choose the color first',
+                    });
+                }
             });
         });
     </script>

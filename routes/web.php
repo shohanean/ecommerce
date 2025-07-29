@@ -23,6 +23,7 @@ Route::get('all/categories', [FrontendController::class, 'all_categories'])->nam
 Route::get('s_category/{slug}/{sub_slug?}', [FrontendController::class, 's_category'])->name('s.category');
 Route::get('product-details/{slug}', [FrontendController::class, 'product_details'])->name('product.details');
 Route::post('newsletter', [FrontendController::class, 'newsletter'])->name('newsletter');
+Route::post('inventory/status', [FrontendController::class, 'inventory_status'])->name('inventory.status');
 
 //Ajax Requests
 Route::get('get/size/{product_id}/{color_id}', [FrontendController::class, 'get_size'])->name('get.size');

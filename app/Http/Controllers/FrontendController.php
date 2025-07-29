@@ -55,6 +55,10 @@ class FrontendController extends Controller
         $related_products = Product::where('id', '!=', $product->id)->where('category_id', $product->category->id)->get();
         return view('frontend.product_details', compact('product', 'previous', 'next', 'related_products'));
     }
+    function inventory_status(Request $request)
+    {
+        return response()->json(Inventory::where('quantity', '!=', 0)->where($request->except('_token'))->first());
+    }
     function shop(Request $request, $per_page = 10)
     {
         if ($request->per_page) {
