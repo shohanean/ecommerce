@@ -129,10 +129,13 @@ class FrontendController extends Controller
     }
     function get_size($product_id, $color_id)
     {
-        $inventories = Inventory::where([
-            'product_id' => $product_id,
-            'color_id' => $color_id,
-        ])->get();
+        $inventories = Inventory::where('product_id', $product_id)
+            ->where('color_id', $color_id)
+            ->orderBy('id') // or created_at or any other field that defines "first"
+            ->get()
+            ->unique('size_id')
+            ->values(); // reset the array keys
+
         $size_variation = "";
         foreach ($inventories as $inventory) {
             // $size_variation .= $inventory->size->name;

@@ -91,6 +91,15 @@
 
     <!-- Breadcrumb area End -->
 
+    @php
+        $invs = $product
+            ->inventory()
+            ->select('color_id')
+            ->groupBy('color_id')
+            ->whereColumn('quantity', '!=', 'sold_quantity')
+            ->get();
+    @endphp
+
     <!-- Main Content Wrapper Start -->
     <div id="content" class="main-content-wrapper">
         <div class="page-content-inner enable-full-width">
@@ -212,10 +221,10 @@
                             class="swiper mySwiper2">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ $product->secondary_image }}" />
+                                    <img src="{{ $product->primary_image }}" />
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="{{ $product->primary_image }}" />
+                                    <img src="{{ $product->secondary_image }}" />
                                 </div>
                             </div>
                             <div class="swiper-button-next"></div>
@@ -224,10 +233,10 @@
                         <div thumbsSlider="" class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ $product->secondary_image }}" />
+                                    <img src="{{ $product->primary_image }}" />
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="{{ $product->primary_image }}" />
+                                    <img src="{{ $product->secondary_image }}" />
                                 </div>
                             </div>
                         </div>
@@ -256,10 +265,17 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product->name }}</h3>
-                            <span class="product-stock in-stock float-right fs-3 text-success">
-                                <i class="fa fa-check-circle-o"></i>
-                                in stock
-                            </span>
+                            @if ($invs->count() == 0)
+                                <span class="product-stock in-stock float-right fs-3 text-danger">
+                                    <i class="fa fa-times-circle-o"></i>
+                                    out of stock
+                                </span>
+                            @else
+                                <span class="product-stock in-stock float-right fs-3 text-success">
+                                    <i class="fa fa-check-circle-o"></i>
+                                    in stock
+                                </span>
+                            @endif
                             <div class="product-price-wrapper mb--40 mb-md--10">
                                 <span class="money" id="offer_price"></span>
                                 <span class="old-price">
@@ -280,7 +296,7 @@
                                     </style>
                                     <p class="swatch-label">Color: <strong class="swatch-label"></strong></p>
                                     <div class="product-color-swatch variation-wrapper">
-                                        @foreach ($product->inventory()->select('color_id')->groupBy('color_id')->whereColumn('quantity', '!=', 'sold_quantity')->get() as $inv)
+                                        @foreach ($invs as $inv)
                                             <div class="swatch-wrapper">
                                                 <i id="check_mark_{{ $inv->color->id }}"
                                                     style="position: absolute; margin:13px"
@@ -631,10 +647,17 @@
                                     _token: '{{ csrf_token() }}' // required for POST in Laravel
                                 },
                                 success: function(response) {
+                                    var quantity = JSON.stringify(
+                                        response.quantity
+                                    );
+                                    var sold_quantity = JSON.stringify(
+                                        response.sold_quantity
+                                    );
+                                    var available_stock = quantity -
+                                        sold_quantity;
                                     $('#available_stock').html(
-                                        "Available Stock: " + JSON
-                                        .stringify(response
-                                            .quantity));
+                                        "Available Stock: " +
+                                        available_stock);
 
                                     var offer_price = JSON.stringify(
                                         Number(response.offer_price)
