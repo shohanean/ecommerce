@@ -285,8 +285,11 @@
                             <div class="clearfix"></div>
                             <p class="product-short-description mb--45 mb-sm--20">{{ $product->short_description }}</p>
                             <form action="#" class="variation-form mb--35">
+                                {{-- Hidden Fields for development purpose --}}
                                 <input type="text" id="selected_color" hidden>
                                 <input type="text" id="selected_size" hidden>
+                                <input type="text" id="available_stock_input" hidden>
+                                {{-- Hidden Fields for development purpose --}}
 
                                 <div class="product-color-variations mb--20">
                                     <style>
@@ -629,6 +632,7 @@
                         $('#available_stock').html("");
                         $('#offer_price').html("");
                         $('#selling_price').html("");
+                        $('#available_stock_input').val("");
                         /*
                         Now it's time for working on size switcher
                         */
@@ -658,7 +662,8 @@
                                     $('#available_stock').html(
                                         "Available Stock: " +
                                         available_stock);
-
+                                    $('#available_stock_input').val(
+                                        available_stock);
                                     var offer_price = JSON.stringify(
                                         Number(response.offer_price)
                                     );
@@ -668,11 +673,12 @@
 
                                     if (offer_price == 0) {
                                         $('#offer_price').html(
-                                            selling_price);
+                                            selling_price + "৳");
                                     } else {
-                                        $('#offer_price').html(offer_price);
+                                        $('#offer_price').html(offer_price +
+                                            "৳");
                                         $('#selling_price').html(
-                                            selling_price);
+                                            selling_price + "৳");
                                     }
                                 }
                             });
@@ -684,7 +690,18 @@
             $('#add_to_cart_btn').click(function() {
                 if ($('#selected_color').val()) {
                     if ($('#selected_size').val()) {
-                        alert("All good");
+                        var requested_stock = Number($('#qty').val());
+                        var available_stock_inv = Number($('#available_stock_input').val());
+
+                        if (requested_stock <= available_stock_inv) {
+                            alert('all good');
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Warning!',
+                                text: 'You requested for more than available',
+                            });
+                        }
                     } else {
                         Swal.fire({
                             icon: 'warning',
